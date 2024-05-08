@@ -1,37 +1,36 @@
-# Sea of Thieves Cooking Timer
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This is a simple and responsive web application that serves as a cooking timer for the game Sea of Thieves. It provides a countdown until cooked and a countdown until burnt for various types of food in the game.
+## Getting Started
 
-## Technologies Used
+First, run the development server:
 
-This application was built using the following technologies:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- Next.js - A React-based web framework for building server-side rendered (SSR) and static websites
-- TailwindCSS - A utility-first CSS framework for rapidly building custom user interfaces
-- @iconify/react - A library of icons for use in web development
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Deployment
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This application is deployed on Render at [Sea of Thieves Cooking Timer](https://sea-of-thieves-cooking-timer.onrender.com/).
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-![Website Example](public/example.webp)
+## Learn More
 
-## Features
+To learn more about Next.js, take a look at the following resources:
 
-- Simple and responsive design
-- Countdown timers for various types of food in Sea of Thieves
-- Single-click to start a timer, double-click to reset a timer
-- Links to the Github repo and a fishing guide for the game
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Usage
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-To use this application, simply click on one of the food items on the main page to start its corresponding timer. Double-clicking will reset the timer. The countdown will show the time until the food is cooked and the time until the food is burnt.
+## Deploy on Vercel
 
-## Acknowledgments
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- The game Sea of Thieves was developed by Rare and published by Xbox Game Studios.
-- The fishing guide used in this application was created by Reddit user /u/WarriorIv0ry and can be found [here](https://i.imgur.com/JduEMsl.png).
-
-## Author
-
-This application was created by Matthew Ciolino. Visit [My Portfolio](https://www.matthewciolino.com/) to learn more.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
