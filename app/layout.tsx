@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   title: "Low Bar Brawlers",
   description: "A history of the Low Bar Brawlers. A Dungeons and Dragons 5e Campaign spanning 3 years.",
   keywords: "dungeons and dragons, dnd, 5e, campaign, low bar brawlers, history, story, characters, players, dm, dungeon master, matthew ciolino",
-  viewport: "width=device-width, initial-scale=1"
 };
 
 export default function RootLayout({
