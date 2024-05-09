@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 type Character = {
     name: string;
     full_title: string;
@@ -14,7 +12,7 @@ type Character = {
 };
 
 
-export function CharacterProfile({ name, full_title, class_name, subclass, background, description, race, alignment, level, icon_path }: Character): ReactNode {
+export function CharacterProfile({ name, full_title, class_name, subclass, background, description, race, alignment, level, icon_path }: Character): JSX.Element {
     return (
         < div className="flex flex-col justify-center items-center py-8" >
             <div className="relative flex flex-row items-center rounded-[20px] w-2/3] max-w-[95%] mx-auto bg-gray-200 dark:bg-neutral-800 bg-clip-border shadow-3xl shadow-shadow-500 dark:text-white dark:shadow-none p-3">

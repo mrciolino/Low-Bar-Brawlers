@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { ReactNode } from "react";
 
 type SeasonPosterProps = {
     title: string;
@@ -22,7 +21,7 @@ const handleDownload = (filePath: string, title: string, type: string) => {
     link.click();
 };
 
-export function SeasonPoster({ title, description, imageSrc }: SeasonPosterProps): ReactNode {
+export function SeasonPoster({ title, description, imageSrc }: SeasonPosterProps): JSX.Element {
     return (
         <Dialog>
             <DialogTrigger>

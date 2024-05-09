@@ -6,6 +6,8 @@ import { CharacterProfile } from "@/components/character";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
+import { World } from "@/components/world";
+
 
 export default function Home() {
   return (
@@ -26,12 +28,12 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="text-left w-full xl:max-w-[50%] lg:max-w-[75%] p-5">
+        <div className="text-center w-full xl:max-w-[50%] lg:max-w-[75%] p-5">
           Thirteen adventures ventured out into an unknown world on a dangerous quest, this is the story of their choatic journey.
         </div>
 
         <div className="mb-32 grid text-center lg:mb-0 lg:w-full xl:max-w-[50%] lg:max-w-[75%] lg:grid-cols-3 lg:text-left divide-x">
-          <Link href="/#poster" scroll={true} className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" >
+          <Link href="#poster" scroll={true} className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" >
             <h2 className="mb-3 text-2xl font-semibold">
               Posters{" "}
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
@@ -181,6 +183,18 @@ export default function Home() {
                   alignment="Neutral Good"
                   level="20 Boon 6" />
               </CarouselItem>
+              <CarouselItem className="pl-4">
+                <CharacterProfile name="Elira Aniveshak"
+                  full_title="Elira Aniveshak"
+                  description="Elira Aniveshak, once a devout Inkling for the revered religion of Profeta, becomes disenchanted with the oppressive practices of her order and finds refuge in a traveling theater troupe, only to be pursued by the wrath of a vengeful deity, prompting her to embark on a journey to another dimension in a bid to protect her newfound family, all while grappling with a myriad of new challenges and adversaries."
+                  class_name="Sorcerer"
+                  subclass="Divine Soul"
+                  background="Acolyte"
+                  icon_path="/elira.jpg"
+                  race="Wood Elf"
+                  alignment="Neutral"
+                  level="20" />
+              </CarouselItem>
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
@@ -191,6 +205,25 @@ export default function Home() {
           Scroll through the characters to learn more about the cast of the Low Bar Brawlers.
         </div>
       </main >
+
+      {/* map page */}
+      < main id="maps" className="flex min-h-screen flex-col items-center justify-between lg:p-24 md:p-4 bg-neutral-200 dark:bg-neutral-800">
+
+        <div className="z-10 w-full max-w-[75%] items-center justify-left font-mono text-sm lg:flex">
+          <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
+          <h2 className="text-2xl font-bold tracking-tight">&nbsp; Maps &nbsp;</h2>
+        </div>
+
+        <div className="w-full max-w-[75%] mx-auto">
+          <World />
+        </div>
+
+        <div className="text-left w-full max-w-[75%]">
+          Explore the map to find out more about the world.
+        </div>
+
+      </main >
+
 
       {/* footer */}
       <footer className="flex items-center justify-center p-4 bg-neutral-400 dark:bg-neutral-500">
