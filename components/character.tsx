@@ -1,6 +1,4 @@
-import Image from "next/image";
 import { ReactNode } from "react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 type Character = {
     name: string;
@@ -22,16 +20,9 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
             <div className="relative flex flex-row items-center rounded-[20px] w-2/3] max-w-[95%] mx-auto bg-gray-200 dark:bg-neutral-800 bg-clip-border shadow-3xl shadow-shadow-500 dark:text-white dark:shadow-none p-3">
                 <div className="w-2/3 relative p-4 divide-y divide-gray-500">
                     <h2 className="text-2xl font-semibold text-center text-gray-800 dark:text-gray-200 p-1">{name}</h2>
-                    <AspectRatio ratio={4 / 5}>
-                        <Image
-                            src={icon_path}
-                            alt="Image"
-                            className="rounded-md object-cover transition-transform shadow-lg drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70] p-1"
-                            fill={true}
-                            objectFit="cover"
-                            objectPosition="top"
-                        />
-                    </AspectRatio>
+                    <div className="p-4 w-full aspect-[4/5] relative rounded-md object-cover transition-transform drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]">
+                        <img src={icon_path} alt={name} className="w-full h-full object-cover object-top" />
+                    </div>
                 </div>
                 <div className="mt-2 mb-8 w-full">
                     <h4 className="px-2 text-xl font-bold text-gray-800 dark:text-gray-200">

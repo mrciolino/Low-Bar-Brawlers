@@ -26,10 +26,8 @@ export function SeasonPoster({ title, description, imageSrc }: SeasonPosterProps
     return (
         <Dialog>
             <DialogTrigger>
-                <div className="w-[250px] relative p-4">
-                    <AspectRatio ratio={4 / 5}>
-                        <Image src={imageSrc} alt="Image" className="rounded-md object-cover transition-transform hover:scale-125 shadow-lg dark:drop-shadow-[0_0_0.3rem_#ffffff70]" fill={true} />
-                    </AspectRatio>
+                <div className="p-4 w-full aspect-[4/5] relative rounded-md object-cover transition-transform hover:scale-125 drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]">
+                    <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
                 </div>
             </DialogTrigger>
             <DialogContent>
@@ -37,7 +35,7 @@ export function SeasonPoster({ title, description, imageSrc }: SeasonPosterProps
                     <DialogTitle>{title}</DialogTitle>
                     <DialogDescription>{description}</DialogDescription>
                 </DialogHeader>
-                <div className="w-[375px] relative p-4 flex justify-center items-center mx-auto">
+                <div className="w-[300px] relative p-4 flex justify-center items-center mx-auto">
                     <AspectRatio ratio={4 / 5}>
                         <Image src={imageSrc} alt="Image" className="rounded-md object-cover shadow-lg dark:drop-shadow-[0_0_0.3rem_#ffffff70]" fill={true} />
                     </AspectRatio>
