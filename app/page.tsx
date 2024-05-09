@@ -15,7 +15,7 @@ export default function Home() {
     <div className="absolute top-0 left-0 w-full h-full divide-y snap-y snap-mandatory overflow-y-scroll h">
 
       {/* splash page */}
-      <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 p-8 bg-neutral-100 dark:bg-neutral-900">
+      <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 md:p-8 bg-neutral-100 dark:bg-neutral-900">
 
         <div className="z-10 w-full xl:max-w-[50%] lg:max-w-[75%] items-center justify-around font-mono text-sm flex p-5">
           <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
@@ -64,14 +64,14 @@ export default function Home() {
       </main >
 
       {/* poster page */}
-      < main id="poster" className="flex min-h-screen flex-col items-center justify-between p-24 bg-neutral-200 dark:bg-neutral-800">
+      < main id="poster" className="flex min-h-screen flex-col items-center justify-between lg:p-24 md:p-8 bg-neutral-200 dark:bg-neutral-800">
 
         <div className="z-10 w-full max-w-[75%] items-center justify-left font-mono text-sm lg:flex">
           <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
           <h2 className="text-2xl font-bold tracking-tight">&nbsp; Posters &nbsp;</h2>
         </div>
 
-        <div className="w-full max-w-[75%] grid grid-cols-4 gap-4">
+        <div className="w-full max-w-[75%] grid xl:grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
           <SeasonPoster
             imageSrc="/Season 1 Poster Full.webp"
             title="Season 1 Poster"
@@ -101,7 +101,7 @@ export default function Home() {
       </main >
 
       {/* character page */}
-      < main id="character" className="flex min-h-screen flex-col items-center justify-between p-24 bg-neutral-300 dark:bg-neutral-700" >
+      < main id="character" className="flex min-h-screen flex-col items-center justify-between lg:p-24 md:p-8 bg-neutral-300 dark:bg-neutral-700" >
 
         <div className="z-10 w-full max-w-[75%] items-center justify-left font-mono text-sm lg:flex">
           <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
@@ -207,7 +207,7 @@ export default function Home() {
       </main >
 
       {/* map page */}
-      < main id="maps" className="flex min-h-screen flex-col items-center justify-between lg:p-24 md:p-4 bg-neutral-200 dark:bg-neutral-800">
+      < main id="maps" className="flex min-h-screen flex-col items-center justify-between lg:p-24 md:p-8 bg-neutral-200 dark:bg-neutral-800">
 
         <div className="z-10 w-full max-w-[75%] items-center justify-left font-mono text-sm lg:flex">
           <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
