@@ -1,10 +1,11 @@
 "use client";
 
+import { LatLngExpression, BoundsExpression } from 'leaflet';
 import { MapContainer, Marker, Popup } from 'react-leaflet'
 import { ImageOverlay } from 'react-leaflet/ImageOverlay'
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
 import React from 'react';
+import L from 'leaflet'
 
 interface ProfilePopUp {
     cityName: string;
@@ -38,8 +39,8 @@ var IconEvent = L.icon({
 });
 
 
-const position = [.01345, .01800]
-const bounds = [[0, 0], [.02690, .03600]]
+const position: LatLngExpression = [.01345, .01800]
+const bounds: BoundsExpression = [[0, 0], [.02690, .03600]]
 
 const Map = () => {
     return (
