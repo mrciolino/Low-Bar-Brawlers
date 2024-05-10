@@ -2,7 +2,7 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 
 export function World() {
-    const Map = React.useMemo(() => dynamic(
+    let Map = React.useMemo(() => dynamic(
         () => import('@/components/map'), // replace '@components/map' with your component's location
         {
             loading: () => <p>A map is loading</p>,
