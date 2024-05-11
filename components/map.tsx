@@ -1,7 +1,8 @@
 "use client";
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, AlertDialogDescription } from "@/components/ui/alert-dialog"
-import { DrawingPinFilledIcon, TrashIcon, DownloadIcon, UploadIcon } from '@radix-ui/react-icons';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { DrawingPinFilledIcon, TrashIcon, DownloadIcon, UploadIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { Textarea } from "@/components/ui/textarea"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Button } from '@/components/ui/button';
@@ -14,6 +15,7 @@ import { ImageOverlay } from 'react-leaflet';
 import L from 'leaflet';
 
 import React, { useState, useEffect } from 'react';
+import mapData from '../app/mapdata.json';
 import '../app/map.css';
 
 // Function to generate icon based on parameters
@@ -24,12 +26,12 @@ const createIcon = (iconUrl: string, shadowUrl: string, iconSize: [number, numbe
 });
 
 // Icon definitions
-const IconCity = createIcon('marker-icon-green.png', 'marker-shadow.png', [24, 36]);
-const IconCityHovered = createIcon('marker-icon-green.png', 'marker-shadow.png', [30, 45]);
-const IconTown = createIcon('marker-icon-red.png', 'marker-shadow.png', [24, 36]);
-const IconTownHovered = createIcon('marker-icon-red.png', 'marker-shadow.png', [30, 45]);
-const IconEvent = createIcon('marker-icon-blue.png', 'marker-shadow.png', [24, 36]);
-const IconEventHovered = createIcon('marker-icon-blue.png', 'marker-shadow.png', [30, 45]);
+const IconCity = createIcon('marker-icon-green.webp', 'marker-shadow.webp', [24, 36]);
+const IconCityHovered = createIcon('marker-icon-green.webp', 'marker-shadow.webp', [30, 45]);
+const IconTown = createIcon('marker-icon-red.webp', 'marker-shadow.webp', [24, 36]);
+const IconTownHovered = createIcon('marker-icon-red.webp', 'marker-shadow.webp', [30, 45]);
+const IconEvent = createIcon('marker-icon-blue.webp', 'marker-shadow.webp', [24, 36]);
+const IconEventHovered = createIcon('marker-icon-blue.webp', 'marker-shadow.webp', [30, 45]);
 
 // Pin information properties
 interface PinInfoProps {
@@ -73,11 +75,13 @@ const icons: Record<string, { normal: L.Icon; hovered: L.Icon }> = {
 const MapMarker: React.FC<TooltipProps> = ({ id, name, description, type, position, isHovered }) => {
     const iconSet = icons[type] || icons.city;
     const icon = isHovered ? iconSet.hovered : iconSet.normal;
+    let border_color = `${type === 'town' ? 'border-red-500' : type === 'event' ? 'border-blue-500' : type === 'city' ? 'border-green-500' : ''}`;
+
 
     return (
         <Marker position={position} icon={icon}>
             <Popup>
-                <div className={`profile-card rounded-lg p-2 -mx-8 -my-4 min-w-[10rem] max-w-[10vw] bg-gradient-to-b from-neutral-400 to-neutral-100`}>
+                <div className={`profile-card rounded-lg p-2 -mx-8 -my-4 min-w-[10rem] max-w-[10vw] bg-gradient-to-b from-neutral-400 to-neutral-100 border-b-2 border-x-2 ${border_color}`}>
                     <h2 className="text-xl font-bold text-neutral-900 pb-1">{name || <Skeleton className="h-6 w-[7rem]" />}</h2>
                     {description || <Skeleton className="h-4 w-[9rem]" />}
                 </div>
@@ -109,6 +113,14 @@ const Map: React.FC<{ initialMarkerLocations?: MarkerInfo[] }> = ({ initialMarke
         alert('Markers copied to clipboard. Paste it into a file to save.');
     };
 
+    // take json map data from file and load it
+    useEffect(() => {
+        setMarkerLocations(mapData.map(marker => ({
+            ...marker,
+            location: [marker.location[0], marker.location[1]]
+        })));
+    }, []);
+
     const [textareaValue, setTextareaValue] = useState('');
 
     const handleTextareaChange = (event: any) => {
@@ -124,25 +136,34 @@ const Map: React.FC<{ initialMarkerLocations?: MarkerInfo[] }> = ({ initialMarke
         }
     };
 
+    const togglePinInfo = () => {
+        const pinInfo = document.querySelectorAll('#PinInfo');
+        pinInfo.forEach((info) => {
+            info.classList.toggle('hidden');
+        });
+    };
+
     return (
         <div className="w-full max-w-[75%] mx-auto py-4">
             <BaseMap markerLocations={markerLocations} setMarkerLocations={setMarkerLocations} hoveredMarkerId={hoveredMarkerId} />
             <div className="items-center justify-between flex flex-row gap-2 mt-2 pb-2">
-                <button aria-label="Download Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" onClick={saveMarkersToFile}>
+                <button aria-label="Download Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row items-center px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" onClick={saveMarkersToFile}>
                     <DownloadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />  Download Markers
+                </button>
+                <button aria-label="Show/Hide Pin Info" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row items-center px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" onClick={togglePinInfo}>
+                    <MagnifyingGlassIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />  Toggle Pin Info
                 </button>
                 <AlertDialog >
                     <AlertDialogTrigger>
-                        <button aria-label="Upload Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" >
-                            <UploadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all " />  Upload Markers
+                        <button aria-label="Upload Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row items-center px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105">
+                            <UploadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />  Upload Markers
                         </button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>
                             <AlertDialogTitle>Paste the JSON text</AlertDialogTitle>
                             <AlertDialogDescription>
-                                This action cannot be undone. This will permanently delete your account
-                                and remove your data from our servers.
+                                This takse your text, parses it as JSON, and <span className="font-bold"> replaces </span> the current markers with these.
                                 <Textarea id="description" className="rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-1 h-[33vh]"
                                     value={textareaValue}
                                     onChange={handleTextareaChange} />
@@ -155,7 +176,7 @@ const Map: React.FC<{ initialMarkerLocations?: MarkerInfo[] }> = ({ initialMarke
                     </AlertDialogContent>
                 </AlertDialog>
             </div>
-            <div className="flex flex-col gap-2 grid xl:grid-cols-2 min-[2050px]:grid-cols-3 max-lg:grid-cols-1">
+            <div id="PinInfo" className="flex flex-col gap-2 grid xl:grid-cols-2 min-[2050px]:grid-cols-3 max-lg:grid-cols-1 hidden">
                 {markerLocations.map((marker, index) => (
                     <PinInfo key={index} {...marker} onHover={handleHover} onHoverEnd={handleHoverEnd} onDelete={deletePin} onUpdate={updatePin} />
                 ))}
@@ -176,7 +197,6 @@ const PinInfo: React.FC<PinInfoProps & { onDelete: (id: string) => void, onUpdat
     };
 
     let type_color = `${type === 'town' ? 'bg-red-500' : type === 'event' ? 'bg-blue-500' : type === 'city' ? 'bg-green-500' : ''}`;
-    let border_color = `${type === 'town' ? 'border-red-500' : type === 'event' ? 'border-blue-500' : type === 'city' ? 'border-green-500' : ''}`;
 
     return (
         <div className="w-full mx-auto p-2 bg-neutral-400 dark:bg-neutral-700 rounded-lg flex flex-col gap-2" onMouseEnter={() => onHover(id)} onMouseLeave={onHoverEnd}>
@@ -186,17 +206,21 @@ const PinInfo: React.FC<PinInfoProps & { onDelete: (id: string) => void, onUpdat
                         defaultValue={name} placeholder="Name" onChange={(e) => handleUpdate('name', e.target.value)} />
                     <div className="flex flex-row gap-2 justify-between items-center">
 
-                        <select className={`mt-px rounded-lg py-1 px-2 align-baseline text-xs font-bold uppercase leading-none text-white flex items-center justify-center ${type_color} hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-100`}
-                            value={type} onChange={(e) => handleUpdate('type', e.target.value)}>
-                            <option value="city" className="bg-blue-500">City</option>
-                            <option value="town" className="bg-red-500">Town</option>
-                            <option value="event" className="bg-green-500">Event</option>
-                        </select>
+                        <Select value={type} onValueChange={(value) => handleUpdate('type', value)}>
+                            <SelectTrigger className={`h-6 rounded-lg px-2 py-1 align-baseline text-xs font-bold uppercase leading-none text-white flex items-center justify-center ${type_color} focus:outline-none focus:ring-2 focus:ring-blue-100`}>
+                                <SelectValue placeholder="Type" />
+                            </SelectTrigger>
+                            <SelectContent >
+                                <SelectItem value="city" className="bg-green-500">City</SelectItem>
+                                <SelectItem value="town" className="bg-red-500">Town</SelectItem>
+                                <SelectItem value="event" className="bg-blue-500">Event</SelectItem>
+                            </SelectContent>
+                        </Select>
 
                         <AlertDialog>
                             <AlertDialogTrigger>
                                 <button aria-label="Delete Pin" className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" >
-                                    <TrashIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+                                    <TrashIcon className=" rotate-0 scale-100 transition-all" />
                                 </button>
                             </AlertDialogTrigger>
                             <AlertDialogContent>
