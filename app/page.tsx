@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from 'next/link';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
+
 import { ModeToggle } from "@/components/switch";
 import { SeasonPoster } from "@/components/poster";
 import { CharacterProfile } from "@/components/character";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
 import { World } from "@/components/world";
 
 
@@ -214,9 +215,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold tracking-tight">&nbsp; Maps &nbsp;</h2>
         </div>
 
-        <div className="w-full max-w-[75%] mx-auto">
-          <World />
-        </div>
+        <World />
 
         <div className="text-left w-full max-w-[75%]">
           Explore the map to find out more about the world.
