@@ -14,7 +14,6 @@ import { ImageOverlay } from 'react-leaflet';
 import L from 'leaflet';
 
 import React, { useState, useEffect } from 'react';
-import 'leaflet/dist/leaflet.css';
 import '../app/map.css';
 
 // Function to generate icon based on parameters
@@ -129,12 +128,12 @@ const Map: React.FC<{ initialMarkerLocations?: MarkerInfo[] }> = ({ initialMarke
         <div className="w-full max-w-[75%] mx-auto py-4">
             <BaseMap markerLocations={markerLocations} setMarkerLocations={setMarkerLocations} hoveredMarkerId={hoveredMarkerId} />
             <div className="items-center justify-between flex flex-row gap-2 mt-2 pb-2">
-                <button className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" onClick={saveMarkersToFile}>
+                <button aria-label="Download Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" onClick={saveMarkersToFile}>
                     <DownloadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />  Download Markers
                 </button>
                 <AlertDialog >
                     <AlertDialogTrigger>
-                        <button className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" >
+                        <button aria-label="Upload Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" >
                             <UploadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all " />  Upload Markers
                         </button>
                     </AlertDialogTrigger>
@@ -196,7 +195,7 @@ const PinInfo: React.FC<PinInfoProps & { onDelete: (id: string) => void, onUpdat
 
                         <AlertDialog>
                             <AlertDialogTrigger>
-                                <button className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" >
+                                <button aria-label="Delete Pin" className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" >
                                     <TrashIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
                                 </button>
                             </AlertDialogTrigger>
@@ -277,10 +276,10 @@ const BaseMap: React.FC<{ markerLocations: MarkerInfo[], setMarkerLocations: Rea
             maxZoom={19}
             maxBounds={bounds}
         >
-            <ImageOverlay bounds={bounds} url="/map.jpg" />
+            <ImageOverlay bounds={bounds} url="/map.webp" />
             <ClickHandler />
             <div id="buttons" className="btn-group">
-                <Button title="Add Marker" onClick={editMarker} className="editable-btn absolute top-5 right-0 bg-white p-2 rounded-sm hover:bg-neutral-200" size="sm">
+                <Button aria-label="Add Marker" title="Add Marker" onClick={editMarker} className="editable-btn absolute top-5 right-0 bg-white p-2 rounded-sm hover:bg-neutral-200" size="sm">
                     <DrawingPinFilledIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" color="black" />
                 </Button>
             </div>

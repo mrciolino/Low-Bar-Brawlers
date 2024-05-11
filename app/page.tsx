@@ -22,8 +22,8 @@ export default function Home() {
           <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
           <h1 className="text-2xl font-bold tracking-tight">&nbsp; Low Bar Brawlers &nbsp;</h1>
           <ModeToggle />
-          <Link href="https://github.com/mrciolino/Low-Bar-Brawlers" rel="noopener noreferrer" target="_blank">
-            <Button variant="outline" size="icon">
+          <Link aria-label="Low Bar Brawler's Github Repo" href="https://github.com/mrciolino/Low-Bar-Brawlers" rel="noopener noreferrer" target="_blank">
+            <Button aria-label="Github Repo" variant="outline" size="icon">
               <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
             </Button>
           </Link>
@@ -34,7 +34,7 @@ export default function Home() {
         </div>
 
         <div className="mb-32 grid text-center lg:mb-0 lg:w-full xl:max-w-[50%] lg:max-w-[75%] lg:grid-cols-3 lg:text-left divide-x">
-          <Link href="#poster" scroll={true} className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" >
+          <Link aria-label="Poster Section" href="#poster" scroll={true} className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" >
             <h2 className="mb-3 text-2xl font-semibold">
               Posters{" "}
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
@@ -43,7 +43,7 @@ export default function Home() {
               View and download season posters for digital or print.
             </p>
           </Link>
-          <Link href="#character" className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+          <Link aria-label="Character Section" href="#character" className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
             <h2 className="mb-3 text-2xl font-semibold">
               Characters{" "}
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
@@ -52,7 +52,7 @@ export default function Home() {
               Meet the cast of characters that make up the Low Bar Brawlers.
             </p>
           </Link>
-          <Link href="#maps" className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+          <Link aria-label="Map Section" href="#maps" className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
             <h2 className="mb-3 text-2xl font-semibold">
               Maps{" "}
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">-&gt;</span>
@@ -119,7 +119,7 @@ export default function Home() {
                   class_name="Barbarian"
                   subclass="Path of the Giant"
                   background="Lawful Neutral"
-                  icon_path="/krog.png"
+                  icon_path="/krog.webp"
                   race="Gnome"
                   alignment="Lawful Neutral"
                   level="8" />
@@ -131,7 +131,7 @@ export default function Home() {
                   class_name="Cleric"
                   subclass="Death Domain"
                   background="Sailor"
-                  icon_path="/spoops.jpg"
+                  icon_path="/spoops.webp"
                   race="Undead Skeleton"
                   alignment="Choatic Neutral"
                   level="20 Boon 10" />
@@ -143,7 +143,7 @@ export default function Home() {
                   class_name="Bard"
                   subclass="College of Eloquence"
                   background="Folk Hero"
-                  icon_path="/os.png"
+                  icon_path="/os.webp"
                   race="High Elf"
                   alignment="Choatic Good"
                   level="20" />
@@ -155,7 +155,7 @@ export default function Home() {
                   class_name="Artificer, Wizard, Warlock"
                   subclass="Armourer, Hexblade"
                   background="Robot"
-                  icon_path="/bazzdos.png"
+                  icon_path="/bazzdos.webp"
                   race="Warforged"
                   alignment="Lawfull"
                   level="20 Boon 6" />
@@ -167,7 +167,7 @@ export default function Home() {
                   class_name="Fighter, Warlock"
                   subclass="Samurai, Great Old One"
                   background="Gladiator"
-                  icon_path="/breezy.png"
+                  icon_path="/breezy.webp"
                   race="Human"
                   alignment="Chaotic Evil"
                   level="20 Boon 6" />
@@ -179,7 +179,7 @@ export default function Home() {
                   class_name="Wizard"
                   subclass="Chronurgy"
                   background="Sage"
-                  icon_path="/Adalynn.jpg"
+                  icon_path="/Adalynn.webp"
                   race="Bronze Dragon"
                   alignment="Neutral Good"
                   level="20 Boon 6" />
@@ -191,7 +191,7 @@ export default function Home() {
                   class_name="Sorcerer"
                   subclass="Divine Soul"
                   background="Acolyte"
-                  icon_path="/elira.jpg"
+                  icon_path="/elira.webp"
                   race="Wood Elf"
                   alignment="Neutral"
                   level="20" />

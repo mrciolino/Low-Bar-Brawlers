@@ -23,7 +23,7 @@ export function ModeToggle() {
     };
 
     return (
-        <Button variant="outline" size="icon" onClick={toggleTheme}>
+        <Button aria-label="Dark Mode Toggle" variant="outline" size="icon" onClick={toggleTheme}>
             {theme === "light" ? (
                 <>
                     <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />

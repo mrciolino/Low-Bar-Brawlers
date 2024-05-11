@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <link rel="icon" href="/dragon.svg" />
+      <link aria-label="Dragon Icon" rel="icon" href="/dragon.svg" />
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

@@ -40,8 +40,8 @@ export function SeasonPoster({ title, description, imageSrc }: SeasonPosterProps
                     </AspectRatio>
                 </div>
                 <div className="flex justify-center mt-4">
-                    <button onClick={() => handleDownload(imageSrc, title, "digital")} className="mr-2 px-4 py-2 bg-gray-800 text-white dark:text-black rounded-md dark:bg-gray-100 hover:dark:bg-gray-300 hover:bg-gray-600 hover:scale-105">Download for Digital</button>
-                    <button onClick={() => handleDownload(imageSrc, title, "print")} className="ml-2 px-4 py-2 bg-gray-800 text-white dark:text-black rounded-md dark:bg-gray-100 hover:dark:bg-gray-300 hover:bg-gray-600 hover:scale-105">Download for Print</button>
+                    <button aria-label="Download for Digital" onClick={() => handleDownload(imageSrc, title, "digital")} className="mr-2 px-4 py-2 bg-gray-800 text-white dark:text-black rounded-md dark:bg-gray-100 hover:dark:bg-gray-300 hover:bg-gray-600 hover:scale-105">Download for Digital</button>
+                    <button aria-label="Download for Print" onClick={() => handleDownload(imageSrc, title, "print")} className="ml-2 px-4 py-2 bg-gray-800 text-white dark:text-black rounded-md dark:bg-gray-100 hover:dark:bg-gray-300 hover:bg-gray-600 hover:scale-105">Download for Print</button>
                 </div>
             </DialogContent>
         </Dialog>
