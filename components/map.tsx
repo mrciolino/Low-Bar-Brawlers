@@ -1,7 +1,6 @@
 "use client";
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger, AlertDialogDescription } from "@/components/ui/alert-dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { DrawingPinFilledIcon, TrashIcon, DownloadIcon, UploadIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { Textarea } from "@/components/ui/textarea"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -205,18 +204,12 @@ const PinInfo: React.FC<PinInfoProps & { onDelete: (id: string) => void, onUpdat
                     <Input type="text" id="name" className="input-text rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-1"
                         defaultValue={name} placeholder="Name" onChange={(e) => handleUpdate('name', e.target.value)} />
                     <div className="flex flex-row gap-2 justify-between items-center">
-
-                        <Select value={type} onValueChange={(value) => handleUpdate('type', value)}>
-                            <SelectTrigger className={`h-6 rounded-lg px-2 py-1 align-baseline text-xs font-bold uppercase leading-none text-white flex items-center justify-center ${type_color} focus:outline-none focus:ring-2 focus:ring-blue-100`}>
-                                <SelectValue placeholder="Type" />
-                            </SelectTrigger>
-                            <SelectContent >
-                                <SelectItem value="city" className="bg-green-500">City</SelectItem>
-                                <SelectItem value="town" className="bg-red-500">Town</SelectItem>
-                                <SelectItem value="event" className="bg-blue-500">Event</SelectItem>
-                            </SelectContent>
-                        </Select>
-
+                        <select value={type} onChange={(e) => handleUpdate('type', e.target.value)}
+                            className={`h-6 rounded-lg px-2 py-1 align-baseline text-xs font-bold uppercase leading-none text-white flex items-center justify-center ${type_color} focus:outline-none focus:ring-2 focus:ring-blue-100`}>
+                            <option value="city" className="bg-green-500">City</option>
+                            <option value="town" className="bg-red-500">Town</option>
+                            <option value="event" className="bg-blue-500">Event</option>
+                        </select>
                         <AlertDialog>
                             <AlertDialogTrigger>
                                 <button aria-label="Delete Pin" className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" >
@@ -240,7 +233,7 @@ const PinInfo: React.FC<PinInfoProps & { onDelete: (id: string) => void, onUpdat
                 <Textarea id="description" className="rounded focus:outline-none focus:ring-2 focus:ring-blue-500 px-1 min-h-[3rem]"
                     defaultValue={description} placeholder="Description" style={{ resize: 'none' }} onChange={(e) => handleUpdate('description', e.target.value)} />
             </div>
-        </div>
+        </div >
     );
 };
 
