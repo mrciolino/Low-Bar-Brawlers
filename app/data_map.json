@@ -1,0 +1,22 @@
+[
+  {
+    "id": "marker-1715432937724",
+    "location": [
+      0.015423728570842182,
+      0.020684165330480123
+    ],
+    "type": "event",
+    "name": "Altrica",
+    "description": "The town which Krorg destroyed"
+  },
+  {
+    "id": "marker-1715434159508",
+    "location": [
+      0.021001204276473708,
+      0.017938634421339476
+    ],
+    "type": "city",
+    "name": "What is your name",
+    "description": "this is the name of the event"
+  }
+]

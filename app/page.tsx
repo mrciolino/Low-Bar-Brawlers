@@ -9,6 +9,8 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { World } from "@/components/world";
 
+import playerData from '../app/data_player.json';
+
 
 export default function Home() {
   return (
@@ -30,7 +32,7 @@ export default function Home() {
         </div>
 
         <div className="text-center w-full xl:max-w-[50%] max-lg:max-w-[75%] p-5">
-          Thirteen adventures ventured out into an unknown world on a dangerous quest, this is the story of their choatic journey.
+          Eleven adventures ventured out into an unknown world on a dangerous quest, this is the story of their chaotic journey.
         </div>
 
         <div className="mb-32 grid text-center lg:mb-0 lg:w-full xl:max-w-[50%] lg:max-w-[75%] lg:grid-cols-3 lg:text-left divide-x">
@@ -110,97 +112,30 @@ export default function Home() {
         </div>
 
         <div className="w-full max-w-[75%] mx-auto">
-          <Carousel opts={{ align: "start", loop: true, }}>
+          <Carousel opts={{ align: "start", loop: true }}>
             <CarouselContent className="-ml-4">
-              <CarouselItem className="pl-4">
-                <CharacterProfile name="Krorg"
-                  full_title="Krorg King of Altricia"
-                  description="Krorg, the world's largest gnome, has led a remarkable journey, wrestling bears, fighting cannons, and extinguishing fires with speed. They've negotiated contracts, led pirate crews, and faced dragons solo. Despite unintentional destruction and economic crises, their transition to druidism and rise to kingship showcase a journey filled with twists and turns, solidifying their status as an unparalleled adventurer."
-                  class_name="Barbarian"
-                  subclass="Path of the Giant"
-                  background="Lawful Neutral"
-                  icon_path="/krog.webp"
-                  race="Gnome"
-                  alignment="Lawful Neutral"
-                  level="8" />
-              </CarouselItem>
-              <CarouselItem className="pl-4">
-                <CharacterProfile name="Spoops"
-                  full_title="God of Life and Death, Grandmaster Spoops The Crusader"
-                  description="Spoops, the Undead Skeleton, wakes up along the beach and find himself uncovering fragmented memories of his past. In one recollection, he defends an ancient Elven city from a deity's assault, sealing a powerful minion before its sinking. Another memory paints him as the betrayed Grandmaster of a Paladin order, slain during a war against Liches. Who know what awaits this enigma."
-                  class_name="Cleric"
-                  subclass="Death Domain"
-                  background="Sailor"
-                  icon_path="/spoops.webp"
-                  race="Undead Skeleton"
-                  alignment="Choatic Neutral"
-                  level="20 Boon 10" />
-              </CarouselItem>
-              <CarouselItem className="pl-4">
-                <CharacterProfile name="Os Vrtnica"
-                  full_title="Os Vrtnica, The Celestial Inspiration and God of Virility"
-                  description="Os, a gifted musician among the high elves, struggled with arrogance and a desire for attention, hindering his relationships. Sent into the world by his family, he made a living performing in taverns. The death of Krorg's pet bear catalyzed Os's realization of life's fleeting nature and spurred his quest for control. Through losses and challenges, including ascending to godhood, Os finds solace and companionship in his bond with Spoops, his trusted ally."
-                  class_name="Bard"
-                  subclass="College of Eloquence"
-                  background="Folk Hero"
-                  icon_path="/os.webp"
-                  race="High Elf"
-                  alignment="Choatic Good"
-                  level="20" />
-              </CarouselItem>
-              <CarouselItem className="pl-4">
-                <CharacterProfile name="Bazzdos"
-                  full_title="The Grand Prophet, The Fragment of Spoops, Lord Duke Bazzdows, Master of the Forge, Artificer Master"
-                  description="Bazzdos, is a versatile character skilled in the art of forging and magic. Their journey involves managing factories across different dimensions and providing guidance to others. Amidst their adventures, they confront assassination threats and navigate the mysteries surrounding dead gods and exiled beings."
-                  class_name="Artificer, Wizard, Warlock"
-                  subclass="Armourer, Hexblade"
-                  background="Robot"
-                  icon_path="/bazzdos.webp"
-                  race="Warforged"
-                  alignment="Lawfull"
-                  level="20 Boon 6" />
-              </CarouselItem>
-              <CarouselItem className="pl-4">
-                <CharacterProfile name="Breezy-E"
-                  full_title="Chef Breezy-E, The Master of the Spaghetti"
-                  description="Breezy-E is a highly fighter, embodying the chaotic evil alignment. Their arsenal includes powerful weapons like the Arc of Death's Touch and Godsbane, alongside abilities such as Tireless Spirit and Strength Before Death. Alongside their prowess in combat, they possess a unique culinary talent as a Chef, able to provide beneficial food during rests and treats for temporary hit points."
-                  class_name="Fighter, Warlock"
-                  subclass="Samurai, Great Old One"
-                  background="Gladiator"
-                  icon_path="/breezy.webp"
-                  race="Human"
-                  alignment="Chaotic Evil"
-                  level="20 Boon 6" />
-              </CarouselItem>
-              <CarouselItem className="pl-4">
-                <CharacterProfile name="Adalynn"
-                  full_title="Adalynn: Frostborn of the Interplanar Void"
-                  description="The most powerfull wizard in the room, Adalynn. Raising castle from the earth into the sky, moving between realms and dimensions, Adalynn is a force to be reckoned with. Her power is only matched by her cunning and her ability to manipulate the world around her. She is a master of the arcane and a master of the mind. Known to have a plane for any outcome on the timeline."
-                  class_name="Wizard"
-                  subclass="Chronurgy"
-                  background="Sage"
-                  icon_path="/Adalynn.webp"
-                  race="Bronze Dragon"
-                  alignment="Neutral Good"
-                  level="20 Boon 6" />
-              </CarouselItem>
-              <CarouselItem className="pl-4">
-                <CharacterProfile name="Elira Aniveshak"
-                  full_title="Elira Aniveshak"
-                  description="Elira Aniveshak, once a devout Inkling for the revered religion of Profeta, becomes disenchanted with the oppressive practices of her order and finds refuge in a traveling theater troupe, only to be pursued by the wrath of a vengeful deity, prompting her to embark on a journey to another dimension in a bid to protect her newfound family, all while grappling with a myriad of new challenges and adversaries."
-                  class_name="Sorcerer"
-                  subclass="Divine Soul"
-                  background="Acolyte"
-                  icon_path="/elira.webp"
-                  race="Wood Elf"
-                  alignment="Neutral"
-                  level="20" />
-              </CarouselItem>
+              {playerData.map((player, index) => (
+                <CarouselItem key={index} className="pl-4">
+                  <CharacterProfile
+                    name={player.name}
+                    full_title={player.full_title}
+                    description={player.description}
+                    class_name={player.class_name}
+                    subclass={player.subclass}
+                    background={player.background}
+                    icon_path={player.icon_path}
+                    race={player.race}
+                    alignment={player.alignment}
+                    level={player.level}
+                  />
+                </CarouselItem>
+              ))}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
         </div>
+
 
         <div className="text-left w-full max-w-[75%]">
           Scroll through the characters to learn more about the cast of the Low Bar Brawlers.
@@ -215,6 +150,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold tracking-tight">&nbsp; Maps &nbsp;</h2>
         </div>
 
+        {/* the entire map section */}
         <World />
 
         <div className="text-left w-full max-w-[75%]">

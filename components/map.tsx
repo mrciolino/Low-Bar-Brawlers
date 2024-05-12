@@ -14,7 +14,7 @@ import { ImageOverlay } from 'react-leaflet';
 import L from 'leaflet';
 
 import React, { useState, useEffect } from 'react';
-import mapData from '../app/mapdata.json';
+import mapData from '../app/data_map.json';
 import '../app/map.css';
 
 // Function to generate icon based on parameters
