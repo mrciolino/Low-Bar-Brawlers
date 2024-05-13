@@ -4,7 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 import { ModeToggle } from "@/components/switch";
 import { SeasonPoster } from "@/components/poster";
-import { CharacterProfile } from "@/components/character";
+import { CharacterProfile, CharacterHighlights } from "@/components/character";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { World } from "@/components/world";
@@ -13,6 +13,7 @@ import playerData from '../app/data_player.json';
 
 
 export default function Home() {
+
   return (
 
     <div className="absolute top-0 left-0 w-full h-full divide-y snap-y snap-mandatory overflow-y-scroll h">
@@ -134,6 +135,11 @@ export default function Home() {
             <CarouselPrevious />
             <CarouselNext />
           </Carousel>
+        </div>
+
+
+        <div className="w-full max-w-[75%] mx-auto">
+          <CharacterHighlights />
         </div>
 
 

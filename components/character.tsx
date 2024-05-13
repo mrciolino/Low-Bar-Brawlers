@@ -1,3 +1,8 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
 type Character = {
     name: string;
     full_title: string;
@@ -77,3 +82,33 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
         </div >
     );
 };
+
+export function CharacterHighlights(): JSX.Element {
+    const [visibleImage, setVisibleImage] = useState(1);
+
+    return (
+        <div className="p-4 w-full h-1/2 aspect-[16/9] relative rounded-md aspect-[16/9] ">
+
+            <Image className={`transition-opacity relative ${visibleImage === 1 ? '' : 'hidden'}`} src="/Frame 1.png" alt="LBB 1" priority layout="fill" objectFit="cover" />
+            <Image className={`transition-opacity relative ${visibleImage === 2 ? '' : 'hidden'}`} src="/Frame 2.png" alt="LBB 2" priority layout="fill" objectFit="cover" />
+            <Image className={`transition-opacity relative ${visibleImage === 3 ? '' : 'hidden'}`} src="/Frame 3.png" alt="LBB 2" priority layout="fill" objectFit="cover" />
+            <Image className={`transition-opacity relative ${visibleImage === 4 ? '' : 'hidden'}`} src="/Frame 4.png" alt="LBB 2" priority layout="fill" objectFit="cover" />
+            <Image className={`transition-opacity relative ${visibleImage === 5 ? '' : 'hidden'}`} src="/Frame 5.png" alt="LBB 2" priority layout="fill" objectFit="cover" />
+            <Image className={`transition-opacity relative ${visibleImage === 6 ? '' : 'hidden'}`} src="/Frame 6.png" alt="LBB 2" priority layout="fill" objectFit="cover" />
+
+            {/* text box highlights */}
+            <div className="absolute top-[10%] left-[5%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute bottom-[22%] left-[5%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[2%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute bottom-[45%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute bottom-[15%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+
+            {/* armour piece highlights */}
+            <div className="absolute top-[35%] left-[40%] clip-path-shield" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[28%] left-[39%] clip-path-sword" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[12%] left-[40%] clip-path-armor" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[43%] left-[46%] w-[8%] h-[6%]" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[18%] left-[41%] clip-path-robe" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+        </div>
+    );
+}
