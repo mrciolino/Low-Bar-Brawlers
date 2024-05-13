@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from 'next/link';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
 
-import { ModeToggle } from "@/components/switch";
-import { SeasonPoster } from "@/components/poster";
-import { CharacterProfile, CharacterHighlights } from "@/components/character";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
+import { CharacterProfile } from "@/components/character";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { SeasonPoster } from "@/components/poster";
+import { ModeToggle } from "@/components/switch";
 import { Button } from "@/components/ui/button";
 import { World } from "@/components/world";
 
@@ -79,22 +79,22 @@ export default function Home() {
           <SeasonPoster
             imageSrc="/Season 1 Poster Full.webp"
             title="Season 1 Poster"
-            description="The print version is a 1.44 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 300 DPI."
+            description="The print version is a 2.16 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 450 DPI. Perfect for 11x14 photo frame (4911x6250)."
           />
           <SeasonPoster
             imageSrc="/Season 2 Poster Full.webp"
             title="Season 2 Poster"
-            description="The print version is a 1.44 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 300 DPI."
+            description="The print version is a 2.16 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 450 DPI. Perfect for 11x14 photo frame (4911x6250)."
           />
           <SeasonPoster
             imageSrc="/Season 3 Poster Full.webp"
             title="Season 3 Poster"
-            description="The print version is a 1.44 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 300 DPI."
+            description="The print version is a 2.16 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 450 DPI. Perfect for 11x14 photo frame (4911x6250)."
           />
           <SeasonPoster
             imageSrc="/Season 4 Poster Full.webp"
             title="Season 4 Poster"
-            description="The print version is a 1.44 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 300 DPI."
+            description="The print version is a 2.16 radius unsharp mask of the digital image based on a viewing distance of 1 foot and 450 DPI. Perfect for 11x14 photo frame (4911x6250)."
           />
         </div>
 
@@ -112,7 +112,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold tracking-tight">&nbsp; Characters &nbsp;</h2>
         </div>
 
-        <div className="w-full max-w-[75%] mx-auto">
+        <div className="w-full max-w-[75%] mx-auto py-4">
           <Carousel opts={{ align: "start", loop: true }}>
             <CarouselContent className="-ml-4">
               {playerData.map((player, index) => (
@@ -136,12 +136,6 @@ export default function Home() {
             <CarouselNext />
           </Carousel>
         </div>
-
-
-        <div className="w-full max-w-[75%] mx-auto">
-          <CharacterHighlights />
-        </div>
-
 
         <div className="text-left w-full max-w-[75%]">
           Scroll through the characters to learn more about the cast of the Low Bar Brawlers.
@@ -170,13 +164,22 @@ export default function Home() {
       <footer className="flex items-center justify-center p-4 bg-neutral-400 dark:bg-neutral-500">
         <div className="flex items-center space-x-2">
           <span className="text-sm">Made with</span>
-          <Image src="/nextjs.svg" alt="Next.js" width={18} height={18} />
+          <div className="relative w-4 h-4">
+            <Image src="/nextjs.svg" alt="Next.js" fill />
+          </div>
           <span className="text-sm">Next.js</span>
-          <Image src="/tailwindcss.svg" alt="Tailwind CSS" width={18} height={18} />
+          <div className="relative w-4 h-4">
+            <Image src="/tailwindcss.svg" alt="Tailwind CSS" fill />
+          </div>
           <span className="text-sm">Tailwind</span>
-          <Image src="/shadcnui.svg" alt="shadcn/ui" width={18} height={18} />
+          <div className="relative w-4 h-4">
+            <Image src="/shadcnui.svg" alt="shadcn/ui" fill />
+          </div>
           <span className="text-sm">shadcn/ui</span>
-          <Image src="/portfolio.webp" alt="Bazzert" width={18} height={18} />
+          &nbsp; 🍃 <span className="text-sm">Leaflet</span>
+          <div className="relative w-4 h-4">
+            <Image src="/portfolio.webp" alt="Bazzert" fill />
+          </div>
           <span className="text-sm">by Bazzert</span>
         </div>
       </footer>

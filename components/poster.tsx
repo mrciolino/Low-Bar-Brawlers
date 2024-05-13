@@ -26,7 +26,9 @@ export function SeasonPoster({ title, description, imageSrc }: SeasonPosterProps
         <Dialog>
             <DialogTrigger>
                 <div className="p-4 w-full aspect-[4/5] relative rounded-md object-cover transition-transform hover:scale-125 drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]">
-                    <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
+                    <div className="relative w-full h-full">
+                        <Image src={imageSrc} alt={title} fill={true} className="rounded-sm object-cover" />
+                    </div>
                 </div>
             </DialogTrigger>
             <DialogContent>
