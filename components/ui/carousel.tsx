@@ -42,6 +42,16 @@ function useCarousel() {
   return context
 }
 
+function closeAccordion() {
+  let accordions = document.getElementsByClassName("PlayerProfile");
+  for (let i = 0; i < accordions.length; i++) {
+    if (accordions[i].getAttribute("aria-expanded") == "true") {
+      (accordions[i] as HTMLElement).click();
+    }
+  }
+}
+
+
 const Carousel = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & CarouselProps
@@ -78,11 +88,13 @@ const Carousel = React.forwardRef<
     }, [])
 
     const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev()
+      api?.scrollPrev();
+      closeAccordion();
     }, [api])
 
     const scrollNext = React.useCallback(() => {
-      api?.scrollNext()
+      api?.scrollNext();
+      closeAccordion();
     }, [api])
 
     const handleKeyDown = React.useCallback(

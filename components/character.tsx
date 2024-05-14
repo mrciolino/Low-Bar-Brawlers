@@ -85,7 +85,7 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
             </div>
             <Accordion type="single" collapsible className="w-full text-center">
                 <AccordionItem value="item-1">
-                    <AccordionTrigger>Player Profile</AccordionTrigger>
+                <AccordionTrigger className="PlayerProfile">Player Profile</AccordionTrigger>
                     <AccordionContent>
                         <CharacterHighlights name={name} />
                     </AccordionContent>

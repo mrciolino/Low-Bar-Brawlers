@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from 'next/link';
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
+
 import { CharacterProfile } from "@/components/character";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { SeasonPoster } from "@/components/poster";
