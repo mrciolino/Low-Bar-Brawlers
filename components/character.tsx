@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 
@@ -85,7 +87,7 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
                 <AccordionItem value="item-1">
                     <AccordionTrigger>Player Profile</AccordionTrigger>
                     <AccordionContent>
-                        <CharacterHighlights />
+                        <CharacterHighlights name={name} />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
@@ -93,34 +95,99 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
     );
 };
 
-function CharacterHighlights(): JSX.Element {
+function CharacterHighlights(name: any): JSX.Element {
     const [visibleImage, setVisibleImage] = useState(1);
 
-    return (
-        <div className="p-4 w-full h-1/2 aspect-[16/9] relative rounded-md aspect-[16/9] ">
+    // reach into dict
+    name = name["name"]
+    let armorHighlights = null
 
-            <Image className={`transition-opacity relative ${visibleImage === 1 ? '' : 'hidden'}`} src="/Frame 1.png" alt="LBB 1" priority fill objectFit="cover" />
-            <Image className={`transition-opacity relative ${visibleImage === 2 ? '' : 'hidden'}`} src="/Frame 2.png" alt="LBB 2" priority fill objectFit="cover" />
-            <Image className={`transition-opacity relative ${visibleImage === 3 ? '' : 'hidden'}`} src="/Frame 3.png" alt="LBB 2" priority fill objectFit="cover" />
-            <Image className={`transition-opacity relative ${visibleImage === 4 ? '' : 'hidden'}`} src="/Frame 4.png" alt="LBB 2" priority fill objectFit="cover" />
-            <Image className={`transition-opacity relative ${visibleImage === 5 ? '' : 'hidden'}`} src="/Frame 5.png" alt="LBB 2" priority fill objectFit="cover" />
-            <Image className={`transition-opacity relative ${visibleImage === 6 ? '' : 'hidden'}`} src="/Frame 6.png" alt="LBB 2" priority fill objectFit="cover" />
+    // armour highlights
+    if (name == "Spoops") {
+        armorHighlights = <>
+            <div className="absolute top-[35%] left-[40%] spoops-clip-path-shield" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[28%] left-[39%] spoops-clip-path-sword" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[12%] left-[40%] spoops-clip-path-armor" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[43%] left-[46%] w-[8%] h-[6%]" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[18%] left-[41%] spoops-clip-path-robe" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+        </>
+    }
 
-            {/* text box highlights */}
+    if (name == "Bazzdos") {
+        armorHighlights = <>
+            <div className="absolute top-[13%] left-[38%] bazzdos-clip-path-shield" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[12%] left-[37%] bazzdos-clip-path-belt" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[5%] left-[37%] bazzdos-clip-path-armor" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[14%] left-[37%] bazzdos-clip-path-gauntlets" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[19%] left-[37%] bazzdos-clip-path-boots" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+        </>
+    }
+
+    if (name == "Breezy-E") {
+        armorHighlights = <>
+            <div className="absolute top-[4%] left-[30%] breezy-clip-path-crown" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[3%] left-[31%] breezy-clip-path-leather" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[8%] left-[32%]  breezy-clip-path-sword" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[9%] left-[32%] breezy-clip-path-bow" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[7%] left-[32%] breezy-clip-path-robe" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+        </>
+    }
+
+    // text box highlights
+    let textHighlights = (
+        <>
             <div className="absolute top-[10%] left-[5%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
             <div className="absolute bottom-[22%] left-[5%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
             <div className="absolute top-[2%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
             <div className="absolute bottom-[45%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
             <div className="absolute bottom-[15%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+        </>
+    )
 
-            {/* armour piece highlights */}
-            <div className="absolute top-[35%] left-[40%] clip-path-shield" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[28%] left-[39%] clip-path-sword" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[12%] left-[40%] clip-path-armor" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[43%] left-[46%] w-[8%] h-[6%]" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[18%] left-[41%] clip-path-robe" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+    if (name == "Breezy-E") {
+        textHighlights = (
+            <>
+                <div className="absolute top-[10%] left-[5%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+                <div className="absolute bottom-[22%] left-[5%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+                <div className="absolute top-[2%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+                <div className="absolute bottom-[45%] right-[8%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+                <div className="absolute bottom-[45%] left-[4%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            </>
+        )
+    }
 
-        </div>
+    // download character icon
+    let imageUrl = `/${name}/icon.png`
+    let filename = `${name} Icon.png`;
+    function downloadImage() {
+        const a = document.createElement('a');
+        a.href = imageUrl;
+        a.download = filename;
+        a.click();
+    }
 
+    return (
+        <>
+            <div className="p-4 w-full h-1/2 aspect-[16/9] relative rounded-md aspect-[16/9] ">
+
+                <Image className={`transition-opacity object-cover relative ${visibleImage === 1 ? '' : 'hidden'}`} src={`/${name}/Frame 1.png`} alt={`${name} 1`} priority fill />
+                <Image className={`transition-opacity object-cover relative ${visibleImage === 2 ? '' : 'hidden'}`} src={`/${name}/Frame 2.png`} alt={`${name} 2`} priority fill />
+                <Image className={`transition-opacity object-cover relative ${visibleImage === 3 ? '' : 'hidden'}`} src={`/${name}/Frame 3.png`} alt={`${name} 3`} priority fill />
+                <Image className={`transition-opacity object-cover relative ${visibleImage === 4 ? '' : 'hidden'}`} src={`/${name}/Frame 4.png`} alt={`${name} 4`} priority fill />
+                <Image className={`transition-opacity object-cover relative ${visibleImage === 5 ? '' : 'hidden'}`} src={`/${name}/Frame 5.png`} alt={`${name} 5`} priority fill />
+                <Image className={`transition-opacity object-cover relative ${visibleImage === 6 ? '' : 'hidden'}`} src={`/${name}/Frame 6.png`} alt={`${name} 6`} priority fill />
+
+                {/* text box highlights */}
+                {textHighlights}
+
+                {/*spoops armour piece highlights */}
+                {armorHighlights}
+
+            </div>
+            {/* download button for charactor icon */}
+            <div className="relative bottom-0 right-0 -mt-4">
+                <Button size="sm" onClick={downloadImage}>Download Character Icon</Button>
+            </div>
+        </>
     );
 }
