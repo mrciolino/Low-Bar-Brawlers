@@ -8,6 +8,13 @@ import { cn } from "@/lib/utils"
 
 const Accordion = AccordionPrimitive.Root
 
+function triggerPlayerProfiles() {
+  let accordions = document.getElementsByClassName("PlayerProfile");
+  for (let i = 0; i < accordions.length; i++) {
+    (accordions[i] as HTMLElement).click();
+  }
+}
+
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
@@ -28,6 +35,7 @@ const AccordionTrigger = React.forwardRef<
 
     <AccordionPrimitive.Trigger
       ref={ref}
+      // onClick={triggerPlayerProfiles}
       className={cn(
         "flex flex-1 items-center justify-center py-4 font-medium transition-all  hover:scale-105 [&[data-state=open]>svg]:rotate-180",
         className
@@ -35,7 +43,7 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
-       &nbsp; {children} &nbsp;
+      &nbsp; {children} &nbsp;
       <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>

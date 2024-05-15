@@ -179,7 +179,9 @@ export default function Home() {
           <span className="text-sm">shadcn/ui</span>
           &nbsp; 🍃 <span className="text-sm">Leaflet</span>
           <div className="relative w-4 h-4">
-            <Image src="/portfolio.webp" alt="Bazzert" fill />
+            <Link href="https://www.matthewciolino.com/" rel="noopener noreferrer" target="_blank">
+              <Image src="/portfolio.webp" alt="Bazzert" fill />
+            </Link>
           </div>
           <span className="text-sm">by Bazzert</span>
         </div>
