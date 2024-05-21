@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from 'next/link';
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
@@ -85,7 +84,7 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
             </div>
             <Accordion type="single" collapsible className="w-full text-center">
                 <AccordionItem value="item-1">
-                <AccordionTrigger className="PlayerProfile">Show Player Profile</AccordionTrigger>
+                    <AccordionTrigger className="PlayerProfile">Show Player Profile</AccordionTrigger>
                     <AccordionContent>
                         <CharacterHighlights name={name} />
                     </AccordionContent>
@@ -105,11 +104,11 @@ function CharacterHighlights(name: any): JSX.Element {
     // armour highlights
     if (name == "Spoops") {
         armorHighlights = <>
-            <div className="absolute top-[35%] left-[40%] spoops-clip-path-shield" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[28%] left-[39%] spoops-clip-path-sword" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[12%] left-[40%] spoops-clip-path-armor" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[43%] left-[46%] w-[8%] h-[6%]" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[18%] left-[41%] spoops-clip-path-robe" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[9%] left-[28%] spoops-clip-path-shield" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[9%] left-[28%] spoops-clip-path-leg" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[10%] left-[28%] spoops-clip-path-armor" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[10%] left-[29%] spoops-clip-path-sword" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[8%] left-[28.5%] spoops-clip-path-robe" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
         </>
     }
 

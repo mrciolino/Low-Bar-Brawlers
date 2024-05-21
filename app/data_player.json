@@ -1,17 +1,5 @@
 [
     {
-        "name": "Krorg",
-        "full_title": "Krorg King of Altricia",
-        "description": "Krorg, the world's largest gnome, has led a remarkable journey, wrestling bears, fighting cannons, and extinguishing fires with speed. They've negotiated contracts, led pirate crews, and faced dragons solo. Despite unintentional destruction and economic crises, their transition to druidism and rise to kingship showcase a journey filled with twists and turns, solidifying their status as an unparalleled adventurer.",
-        "class_name": "Barbarian",
-        "subclass": "Path of the Giant",
-        "background": "Lawful Neutral",
-        "icon_path": "/krog.webp",
-        "race": "Gnome",
-        "alignment": "Lawful Neutral",
-        "level": "8"
-    },
-    {
         "name": "Spoops",
         "full_title": "God of Life and Death, Grandmaster Spoops The Crusader",
         "description": "Spoops, the Undead Skeleton, wakes up along the beach and finds himself uncovering fragmented memories of his past. In one recollection, he defends an ancient Elven city from a deity's assault, sealing a powerful minion before its sinking. Another memory paints him as the betrayed Grandmaster of a Paladin order, slain during a war against Liches. Who knows what awaits this enigma.",
@@ -22,18 +10,6 @@
         "race": "Undead Skeleton",
         "alignment": "Chaotic Neutral",
         "level": "20 Boon 10"
-    },
-    {
-        "name": "Os Vrtnica",
-        "full_title": "Os Vrtnica, The Celestial Inspiration and God of Virility",
-        "description": "Os Vrtnica was a gifted musician among the high elves but struggled with arrogance and a desire for attention, hindering his relationships. Sent into the world by his family, he made a living performing in taverns. The death of Krorg's pet bear catalyzed Os's realization of life's fleeting nature and spurred his quest for control. Through losses and challenges, including ascending to godhood, Os finds solace and companionship in his bond with Spoops, his trusted ally.",
-        "class_name": "Bard",
-        "subclass": "College of Eloquence",
-        "background": "Folk Hero",
-        "icon_path": "/os.webp",
-        "race": "High Elf",
-        "alignment": "Chaotic Good",
-        "level": "20"
     },
     {
         "name": "Bazzdos",
@@ -70,6 +46,30 @@
         "race": "Bronze Dragon",
         "alignment": "Neutral Good",
         "level": "20 Boon 6"
+    },
+    {
+        "name": "Krorg",
+        "full_title": "Krorg King of Altricia",
+        "description": "Krorg, the world's largest gnome, has led a remarkable journey, wrestling bears, fighting cannons, and extinguishing fires with speed. They've negotiated contracts, led pirate crews, and faced dragons solo. Despite unintentional destruction and economic crises, their transition to druidism and rise to kingship showcase a journey filled with twists and turns, solidifying their status as an unparalleled adventurer.",
+        "class_name": "Barbarian",
+        "subclass": "Path of the Giant",
+        "background": "Lawful Neutral",
+        "icon_path": "/krog.webp",
+        "race": "Gnome",
+        "alignment": "Lawful Neutral",
+        "level": "8"
+    },
+    {
+        "name": "Os Vrtnica",
+        "full_title": "Os Vrtnica, The Celestial Inspiration and God of Virility",
+        "description": "Os Vrtnica was a gifted musician among the high elves but struggled with arrogance and a desire for attention, hindering his relationships. Sent into the world by his family, he made a living performing in taverns. The death of Krorg's pet bear catalyzed Os's realization of life's fleeting nature and spurred his quest for control. Through losses and challenges, including ascending to godhood, Os finds solace and companionship in his bond with Spoops, his trusted ally.",
+        "class_name": "Bard",
+        "subclass": "College of Eloquence",
+        "background": "Folk Hero",
+        "icon_path": "/os.webp",
+        "race": "High Elf",
+        "alignment": "Chaotic Good",
+        "level": "20"
     },
     {
         "name": "Elira Aniveshak",
