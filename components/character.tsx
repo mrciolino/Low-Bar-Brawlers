@@ -85,7 +85,7 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
             </div>
             <Accordion type="single" collapsible className="w-full text-center">
                 <AccordionItem value="item-1">
-                <AccordionTrigger className="PlayerProfile">Player Profile</AccordionTrigger>
+                <AccordionTrigger className="PlayerProfile">Show Player Profile</AccordionTrigger>
                     <AccordionContent>
                         <CharacterHighlights name={name} />
                     </AccordionContent>
@@ -127,9 +127,19 @@ function CharacterHighlights(name: any): JSX.Element {
         armorHighlights = <>
             <div className="absolute top-[4%] left-[30%] breezy-clip-path-crown" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
             <div className="absolute top-[3%] left-[31%] breezy-clip-path-leather" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
-            <div className="absolute top-[8%] left-[32%]  breezy-clip-path-sword" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[8%] left-[32%] breezy-clip-path-sword" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
             <div className="absolute top-[9%] left-[32%] breezy-clip-path-bow" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
             <div className="absolute top-[7%] left-[32%] breezy-clip-path-robe" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
+        </>
+    }
+
+    if (name == "Adalynn") {
+        armorHighlights = <>
+            <div className="absolute top-[0%] left-[29%] adaylyn-clip-path-wand" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[2%] left-[30%] adaylyn-clip-path-robe" onMouseEnter={() => setVisibleImage(3)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[12%] left-[30%] adaylyn-clip-path-boots" onMouseEnter={() => setVisibleImage(4)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute bottom-[8%] left-[30%] adaylyn-clip-path-eyes" onMouseEnter={() => setVisibleImage(5)} onMouseLeave={() => setVisibleImage(1)} />
+            <div className="absolute top-[3%] left-[30%] adaylyn-clip-path-tome" onMouseEnter={() => setVisibleImage(6)} onMouseLeave={() => setVisibleImage(1)} />
         </>
     }
 
@@ -144,7 +154,7 @@ function CharacterHighlights(name: any): JSX.Element {
         </>
     )
 
-    if (name == "Breezy-E") {
+    if (name == "Breezy-E" || name == "Adalynn") {
         textHighlights = (
             <>
                 <div className="absolute top-[10%] left-[5%] w-1/4 h-1/5" onMouseEnter={() => setVisibleImage(2)} onMouseLeave={() => setVisibleImage(1)} />

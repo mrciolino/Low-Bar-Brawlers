@@ -1,22 +1,32 @@
 [
   {
-    "id": "marker-1715432937724",
+    "id": "marker-1716250098485",
     "location": [
-      0.015423728570842182,
-      0.020684165330480123
-    ],
-    "type": "event",
-    "name": "Altrica",
-    "description": "The town which Krorg destroyed"
-  },
-  {
-    "id": "marker-1715434159508",
-    "location": [
-      0.021001204276473708,
-      0.017938634421339476
+      0.05004100948281053,
+      0.11410074632554947
     ],
     "type": "city",
-    "name": "What is your name",
-    "description": "this is the name of the event"
+    "name": "Altricia",
+    "description": "Once the sprawling city of Alford, after the destruction of Inferno, Darmuth, Drakham, and the Pirate Raid the town was leveled. In its place, and rebuilt from the ashes, Altricia stands."
+  },
+  {
+    "id": "marker-1716289601187",
+    "location": [
+      0.03701949792366953,
+      0.10364479432456888
+    ],
+    "type": "event",
+    "name": "Dragon Turtle Escape",
+    "description": "While traveling by boat across the ocean, the party encounter a massive dragon turtle. Using some quick wit, they outran it in the moment. Fortunately, years later the party came back and raided its horde."
+  },
+  {
+    "id": "marker-1716293065970",
+    "location": [
+      0.06927144353840785,
+      0.06407322654416792
+    ],
+    "type": "town",
+    "name": "Krorg's Hometown",
+    "description": "The birthplace of Krorg, the creator of Bomb Coin. Small town of 500 gnomes which defended their home bravely against a ithilid onslaught."
   }
 ]

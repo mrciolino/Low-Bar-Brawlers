@@ -24,13 +24,17 @@ const createIcon = (iconUrl: string, shadowUrl: string, iconSize: [number, numbe
     iconSize
 });
 
-// Icon definitions
-const IconCity = createIcon('marker-icon-green.webp', 'marker-shadow.webp', [24, 36]);
-const IconCityHovered = createIcon('marker-icon-green.webp', 'marker-shadow.webp', [30, 45]);
-const IconTown = createIcon('marker-icon-red.webp', 'marker-shadow.webp', [24, 36]);
-const IconTownHovered = createIcon('marker-icon-red.webp', 'marker-shadow.webp', [30, 45]);
-const IconEvent = createIcon('marker-icon-blue.webp', 'marker-shadow.webp', [24, 36]);
-const IconEventHovered = createIcon('marker-icon-blue.webp', 'marker-shadow.webp', [30, 45]);
+// Icon definitions 
+const cityIconPath = 'city.png';
+const townIconPath = 'town.png';
+const eventIconPath = 'dice.png';
+const shadowIconPath = 'marker-shadow.webp';
+const IconCity = createIcon(cityIconPath, shadowIconPath, [24, 36]);
+const IconCityHovered = createIcon(cityIconPath, shadowIconPath, [30, 45]);
+const IconTown = createIcon(townIconPath, shadowIconPath, [24, 36]);
+const IconTownHovered = createIcon(townIconPath, shadowIconPath, [30, 45]);
+const IconEvent = createIcon(eventIconPath, shadowIconPath, [24, 36]);
+const IconEventHovered = createIcon(eventIconPath, shadowIconPath, [30, 45]);
 
 // Pin information properties
 interface PinInfoProps {
@@ -80,7 +84,7 @@ const MapMarker: React.FC<TooltipProps> = ({ id, name, description, type, positi
     return (
         <Marker position={position} icon={icon}>
             <Popup>
-                <div className={`profile-card rounded-lg p-2 -mx-8 -my-4 min-w-[10rem] max-w-[10vw] bg-gradient-to-b from-neutral-400 to-neutral-100 border-b-2 border-x-2 ${border_color}`}>
+                <div className={`profile-card rounded-lg p-2 -mx-8 -my-4 min-w-[10rem] max-w-[10vw] bg-gradient-to-b from-neutral-200 to-neutral-100 border-b-2 border-x-2 ${border_color}`}>
                     <h2 className="text-xl font-bold text-neutral-900 pb-1">{name || <Skeleton className="h-6 w-[7rem]" />}</h2>
                     {description || <Skeleton className="h-4 w-[9rem]" />}
                 </div>
@@ -279,8 +283,8 @@ const BaseMap: React.FC<{ markerLocations: MarkerInfo[], setMarkerLocations: Rea
         return null;
     }
 
-    const position: LatLngExpression = [0.01345, 0.01800];
-    const bounds: BoundsExpression = [[0, 0], [0.02690, 0.03600]];
+    const position: LatLngExpression = [0.04000, 0.08000];
+    const bounds: BoundsExpression = [[0, 0], [0.08000, 0.16000]];
 
     return (
         <MapContainer
@@ -288,10 +292,10 @@ const BaseMap: React.FC<{ markerLocations: MarkerInfo[], setMarkerLocations: Rea
             scrollWheelZoom={true}
             style={{ height: '67vh', width: '100%' }}
             className="rounded-lg border border-transparent bg-neutral-100 dark:bg-neutral-900"
-            zoom={16}
-            minZoom={14}
-            maxZoom={19}
-            maxBounds={bounds}
+            zoom={14}
+            minZoom={13}
+            maxZoom={17}
+            maxBounds={[[-.01, -.01], [0.09000, 0.17000]]}
         >
             <ImageOverlay bounds={bounds} url="/map.webp" />
             <ClickHandler />
