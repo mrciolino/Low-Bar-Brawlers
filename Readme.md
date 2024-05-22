@@ -9,8 +9,9 @@ Welcome to the Low Bar Brawlers project! This is a website dedicated to a Dungeo
 Eleven adventurers ventured out into an unknown world on a dangerous quest. This is the story of their chaotic journey. 
 
 * Click on a poster to view and download the full-size image for digital or print. 
-* View the cast of characters and their stories.
-
+* View the cast of characters and their profiles.
+* Check out the map to visual journey through the story.
+  
 ## Built With 🛠️
 
 This project was built using the following technologies:
