@@ -1,5 +1,7 @@
 <h1><img align="center" height="50" src="./public/dragon.svg"> Low Bar Brawlers </h1>
 
+[![Website](https://img.shields.io/badge/website-live-%23af4543.svg?style=for-the-badge&logo=dungeonsanddragons&logoColor=white)](https://low-bar-brawlers.onrender.com/)
+
 Welcome to the Low Bar Brawlers project! This is a website dedicated to a Dungeons and Dragons 5e Campaign that spanned over 4 years. Here, you can find the history, story, characters, and the journey of the Low Bar Brawlers.
 
 ## About the Website 📖
@@ -37,6 +39,13 @@ Go to the development server:
 
 
 ## Contributing 🤝
-Contributions, issues, and feature requests are welcome! Feel free to check issues page. 
+Contributions, issues, and feature requests are welcome! Feel free to check comment on what you would like to see in the issues page. Two important files to know are the `data_map.json` and `data_player.json` files in the app folder. These files contain the information for the pins on the map and the player profiles, respectively.
 
-Project Link: https://github.com/mrciolino/Low-Bar-Brawlers
+```
+Low Bar Brawlers
+├───app
+│       data_map.json // Contains Pin Info on the Map
+│       data_player.json // Contains Player Info for the Profiles
+```
+
+Project Link: https://github.com/mrciolino/Low-Bar-Brawlers/issues
