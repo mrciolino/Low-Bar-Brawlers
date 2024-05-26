@@ -50,14 +50,14 @@
     {
         "name": "Krorg",
         "full_title": "Krorg King of Altricia",
-        "description": "Krorg, the world's largest gnome, has led a remarkable journey, wrestling bears, fighting cannons, and extinguishing fires with speed. They've negotiated contracts, led pirate crews, and faced dragons solo. Despite unintentional destruction and economic crises, their transition to druidism and rise to kingship showcase a journey filled with twists and turns, solidifying their status as an unparalleled adventurer.",
+        "description": "Krorg, a half-gnome, half-human, half-orc, half-dwarf began humble beginnings and fierce rivalry with his stepbrother Bhill, and sought greatness beyond the shadow of his comedic failure that led to his exile. Joining a band of adventurers, Krorg orchestrated a legendary pirate raid, ascending to kingship through sheer cunning and audacity. To avert financial ruin of Alford, he married Kayla, a wealthy noblewoman, only to squander her family's fortune. Their son, Krorgfrey, was prophesied to redeem the family’s sins. However, Krorg's unchecked ambition drew the wrath of Darmuth, an ithilich who destroyed his kingdom and served Krorg as food for her monstrous pet.",
         "class_name": "Barbarian",
-        "subclass": "Path of the Giant",
-        "background": "Lawful Neutral",
+        "subclass": "Totem Barbarian 7 / Druid 2",
+        "background": "Outlander",
         "icon_path": "/krog.webp",
-        "race": "Gnome",
-        "alignment": "Lawful Neutral",
-        "level": "8"
+        "race": "Half-Half-Gnome",
+        "alignment": "Lawful Chaotic",
+        "level": "9"
     },
     {
         "name": "Os Vrtnica",
