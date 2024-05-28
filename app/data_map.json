@@ -7,7 +7,7 @@
     ],
     "type": "city",
     "name": "Altricia",
-    "description": "Once the sprawling city of Alford, after the destruction of Inferno, Darmuth, Drakham, and the Pirate Raid the town was leveled. In its place, and rebuilt from the ashes, Altricia stands."
+    "description": "Once the sprawling city of Alford, home of the powerful wizard Iliard. The city has seen several cycles of destruction and rebirth. Starting from Drakham, who's death ushered in a great swarm of bone spiders which wrecked the city. Next was the great Pirate Raid, which bombarded the bone spiders and most of the city to ruins. After the great Pirate Raid, Krorg ruled for 3 years until Darmuth's arrival ruined all progress made. Afterwards, Inferno's fire devastated what little remained. In its place, and rebuilt from the ashes, Altricia stands."
   },
   {
     "id": "marker-1716289601187",
@@ -26,7 +26,57 @@
       0.06407322654416792
     ],
     "type": "town",
-    "name": "Krorg's Hometown",
-    "description": "The birthplace of Krorg, the creator of Bomb Coin. Small town of 500 gnomes which defended their home bravely against a ithilid onslaught."
+    "name": "Krorg's Hometown / ????? ?????????",
+    "description": "The birthplace of Krorg, one of the original adventurers of the LBB. Krorg was exiled from the city for telling bad jokes shortly before joining the party. A small town of 500 gnomes which defended their home bravely against a ithilid onslaught. The true name of the city is kept away by gnomish magic, and everyone else calls it \"Krorg's Hometown\"."
+  },
+  {
+    "id": "marker-1716693038201",
+    "location": [
+      0.05796478443151608,
+      0.057313442230224616
+    ],
+    "type": "city",
+    "name": "Fywick",
+    "description": "A large city on Fywick Lake. Current home of Meade, a former adventurer who started a popular bar for new adventurers called the \"Three Swishes\". "
+  },
+  {
+    "id": "marker-1716693191233",
+    "location": [
+      0.04694796273816926,
+      0.08728981018066406
+    ],
+    "type": "event",
+    "name": "The Fall of Saragossa",
+    "description": "The site of the formal pirate capital of Saragossa. It was destroyed by Rathwing during the great Pirate Raid of Alford. Its leader escaped but was soon assassinated by Bazzert. "
+  },
+  {
+    "id": "marker-1716693347471",
+    "location": [
+      0.02364087826767871,
+      0.10364055633544923
+    ],
+    "type": "city",
+    "name": "Gothriathon",
+    "description": "The dwarvish city that Os escaped to after the Pirate Raid of Alford. Os slowly became the hidden lord of the city, enacting justice and keeping the people free from Krorg's fiat capital imperialism. "
+  },
+  {
+    "id": "marker-1716693521103",
+    "location": [
+      0.046908431989466357,
+      0.0734393809702061
+    ],
+    "type": "event",
+    "name": "Adventure's Beginning",
+    "description": "The tale of the Low Bar Brawlers began somewhere around here in a bar."
+  },
+  {
+    "id": "marker-1716693580574",
+    "location": [
+      0.05536700868632706,
+      0.11173009872436525
+    ],
+    "type": "event",
+    "name": "The First Battle with Rathwing / Bomb's Death",
+    "description": "Around here, the party first did battle with Rathwing's cultists after they crucified the local town. After tracking the cultists to a nearby abandoned fortress, the party attacked. But the overconfidence of Krorg brought out Rathwing, who proceeded to kill Bomb with magic coins. Bomb is buried here under a hill of the swords of the defeated enemies. "
   }
 ]
