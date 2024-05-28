@@ -84,7 +84,7 @@ const MapMarker: React.FC<TooltipProps> = ({ id, name, description, type, positi
     return (
         <Marker position={position} icon={icon}>
             <Popup>
-                <div className={`profile-card rounded-lg p-2 -mx-8 -my-4 min-w-[10rem] max-w-[10vw] bg-gradient-to-b from-neutral-200 to-neutral-100 border-b-2 border-x-2 ${border_color}`}>
+                <div className={`profile-card rounded-lg p-2 -mx-8 -my-4 min-w-[10rem] max-w-[20vw] bg-gradient-to-b from-neutral-200 to-neutral-100 border-b-2 border-x-2 ${border_color}`}>
                     <h2 className="text-xl font-bold text-neutral-900 pb-1">{name || <Skeleton className="h-6 w-[7rem]" />}</h2>
                     {description || <Skeleton className="h-4 w-[9rem]" />}
                 </div>
@@ -151,15 +151,15 @@ const Map: React.FC<{ initialMarkerLocations?: MarkerInfo[] }> = ({ initialMarke
             <BaseMap markerLocations={markerLocations} setMarkerLocations={setMarkerLocations} hoveredMarkerId={hoveredMarkerId} />
             <div className="items-center justify-between flex flex-row gap-2 mt-2 pb-2">
                 <button aria-label="Download Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row items-center px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" onClick={saveMarkersToFile}>
-                    <DownloadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />  Download Markers
+                    <DownloadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all mr-1" />  Copy Map Markers
                 </button>
                 <button aria-label="Show/Hide Pin Info" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row items-center px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105" onClick={togglePinInfo}>
-                    <MagnifyingGlassIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />  Toggle Pin Info
+                    <MagnifyingGlassIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all mr-1" />  Toggle Marker Info
                 </button>
                 <AlertDialog >
                     <AlertDialogTrigger>
                         <button aria-label="Upload Markers" className="bg-neutral-300 dark:bg-neutral-500 text-neutral-900 dark:text-white rounded-sm flex flex-row items-center px-1 py-0 shadow-md shadow-neutral-700/40 hover:scale-105">
-                            <UploadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />  Upload Markers
+                            <UploadIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all mr-1" />  Add Markers to Map
                         </button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
