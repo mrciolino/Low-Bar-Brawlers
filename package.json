@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npx serve@latest out",
+    "start": "serve out",
     "lint": "next lint"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
     "react-leaflet-editable": "^0.2.2",
+    "serve": "^14.2.3",
     "sharp": "^0.33.3",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
