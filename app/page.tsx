@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from "@/components/ui/carousel"
 
 import { CharacterProfile } from "@/components/character";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon, FileTextIcon } from "@radix-ui/react-icons";
 import { SeasonPoster } from "@/components/poster";
 import { ModeToggle } from "@/components/switch";
 import { Button } from "@/components/ui/button";
@@ -23,21 +23,30 @@ export default function Home() {
       <main className="flex min-h-screen flex-col items-center justify-between lg:p-24 p-0 bg-neutral-100 dark:bg-neutral-900">
 
         <div className="z-10 w-full xl:max-w-[50%] lg:max-w-[75%] items-center justify-around font-mono text-sm flex p-5">
-          <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
-          <h1 className="text-2xl font-bold tracking-tight">&nbsp; Low Bar Brawlers &nbsp;</h1>
-          <ModeToggle />
-          <Link aria-label="Low Bar Brawler's Github Repo" href="https://github.com/mrciolino/Low-Bar-Brawlers" rel="noopener noreferrer" target="_blank">
-            <Button aria-label="Github Repo" variant="outline" size="icon">
-              <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
-            </Button>
-          </Link>
+          <div className="flex items-center">
+            <Image className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]" src="/dragon.svg" alt="LBB Logo" width={40} height={40} priority />
+            <h1 className="text-2xl font-bold tracking-tight">&nbsp; Low Bar Brawlers &nbsp;</h1>
+          </div>
+          <div className="flex items-center space-x-4">
+            <ModeToggle />
+            <Link aria-label="Wiki Page" href="/wiki" title="Wiki Page">
+              <Button aria-label="Wiki Page" variant="outline" size="icon">
+                <FileTextIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+              </Button>
+            </Link>
+            <Link aria-label="Low Bar Brawler's Github Repo" href="https://github.com/mrciolino/Low-Bar-Brawlers" rel="noopener noreferrer" target="_blank" title="Github Repo">
+              <Button aria-label="Github Repo" variant="outline" size="icon">
+                <GitHubLogoIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
+              </Button>
+            </Link>
+          </div>
         </div>
 
-        <div className="text-center w-full xl:max-w-[50%] max-lg:max-w-[75%] p-5">
+        <div className="text-center w-full xl:max-w-[50%] lg:max-w-[75%] p-5">
           Eleven adventures ventured out into an unknown world on a dangerous quest, this is the story of their chaotic journey.
         </div>
 
-        <div className="mb-32 grid text-center lg:mb-0 lg:w-full xl:max-w-[50%] lg:max-w-[75%] lg:grid-cols-3 lg:text-left divide-x">
+        <div className="mb-32 grid text-center lg:mb-0 lg:w-full xl:max-w-[50%] lg:max-w-[75%] lg:grid-cols-3 lg:text-left">
           <Link aria-label="Poster Section" href="#poster" scroll={true} className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30" >
             <h2 className="mb-3 text-2xl font-semibold">
               Posters{" "}
