@@ -29,7 +29,7 @@ export default function Home() {
           </div>
           <div className="flex items-center space-x-4">
             <ModeToggle />
-            <Link aria-label="Wiki Page" href="/wiki" title="Wiki Page">
+            <Link aria-label="Wiki Page" href="https://wiki.lowbarbrawlers.com" rel="noopener noreferrer" target="_blank"title="Wiki Page">
               <Button aria-label="Wiki Page" variant="outline" size="icon">
                 <FileTextIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
               </Button>
