@@ -1,57 +1,69 @@
+# React + TypeScript + Vite
 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-<h1><img align="center" height="50" src="./public/dragon.svg"> Low Bar Brawlers </h1>
+Currently, two official plugins are available:
 
-[![Website](https://img.shields.io/badge/website-live-%23af4543.svg?style=for-the-badge&logo=dungeonsanddragons&logoColor=white)](https://low-bar-brawlers.onrender.com/)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Welcome to the Low Bar Brawlers project! This is a website dedicated to a Dungeons and Dragons 5e Campaign that spanned over 4 years. Here, you can find the history, story, characters, and the journey of the Low Bar Brawlers.
+## Expanding the ESLint configuration
 
-## About the Website 📖
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-Eleven adventurers ventured out into an unknown world on a dangerous quest. This is the story of their chaotic journey. 
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-* Click on a poster to view and download the full-size image for digital or print. 
-* View the cast of characters and their profiles.
-* Check out the map to visual journey through the story.
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-## 📂 Wiki Backup
-
-Looking for the wiki backup? 👉 [**Go here**](https://github.com/mrciolino/wiki-backup) 🔗
-  
-## Built With 🛠️
-
-This project was built using the following technologies:
-
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![shadcn](https://img.shields.io/badge/shadcn/ui-%23000000.svg?style=for-the-badge&logo=shadcnui&logoColor=white)
-
-## Getting Started 🚀
-
-To get a local copy up and running, follow these steps:
-
-Clone the repository:
-```bash
-git clone https://github.com/mrciolino/Low-Bar-Brawlers
-cd Low-Bar-Brawlers
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-Install the dependencies and run the server:
-```bash
-npm install
-npm run dev
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-
-Go to the development server:
-> Visit http://localhost:3000 with your browser to see the result.
-
-
-## Contributing 🤝
-Contributions, issues, and feature requests are welcome! Feel free to check comment on what you would like to see in the issues page. Two important files to know are the `data_map.json` and `data_player.json` files in the app folder. These files contain the information for the pins on the map and the player profiles, respectively.
-
-```
-Low Bar Brawlers
-├───app
-│       data_map.json // Contains Pin Info on the Map
-│       data_player.json // Contains Player Info for the Profiles
-```
-
-Project Link: https://github.com/mrciolino/Low-Bar-Brawlers/issues
