@@ -150,7 +150,7 @@ const DrawingPad: React.FC = () => {
                                 <Brush className="h-5 w-5 text-blue-700 dark:text-blue-300" />
                             </Button>
                         </TooltipTrigger>
-                        <TooltipContent>
+                        <TooltipContent side="right">
                             <p>Drawing options</p>
                         </TooltipContent>
                     </Tooltip>
@@ -168,7 +168,7 @@ const DrawingPad: React.FC = () => {
                                 <Undo2 className="h-5 w-5" />
                             </Button>
                         </TooltipTrigger>
-                        <TooltipContent>
+                        <TooltipContent side="right">
                             <p>Undo</p>
                         </TooltipContent>
                     </Tooltip>
@@ -185,7 +185,7 @@ const DrawingPad: React.FC = () => {
                                 <Redo2 className="h-5 w-5" />
                             </Button>
                         </TooltipTrigger>
-                        <TooltipContent>
+                        <TooltipContent side="right">
                             <p>Redo</p>
                         </TooltipContent>
                     </Tooltip>
@@ -201,7 +201,7 @@ const DrawingPad: React.FC = () => {
                                 <Trash2 className="h-5 w-5 text-red-600" />
                             </Button>
                         </TooltipTrigger>
-                        <TooltipContent>
+                        <TooltipContent side="right">
                             <p>Reset</p>
                         </TooltipContent>
                     </Tooltip>
