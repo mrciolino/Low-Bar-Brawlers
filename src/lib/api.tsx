@@ -19,7 +19,18 @@ export interface Stroke {
 export type ConnectionStatus = 'connecting' | 'connected' | 'disconnected';
 
 // Constants
-const SERVER_URL = process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3001';
+const getServerURL = () => {
+    if (process.env.NODE_ENV === 'production') {
+        // In production with nginx proxy, use same origin
+        return '';
+    }
+
+    // In development, use the same host as the current page
+    const currentHost = window.location.hostname;
+    return `http://${currentHost}:3001`;
+};
+
+const SERVER_URL = getServerURL();
 
 // Custom hook for drawing API
 export const useDrawingAPI = () => {

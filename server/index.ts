@@ -24,7 +24,15 @@ class DrawingServer {
   private server = createServer(this.app);
   private io = new Server(this.server, {
     cors: {
-      origin: ["http://localhost:5173", "http://localhost:3000"],
+      origin: [
+        "http://localhost:5173", 
+        "http://localhost:3000", 
+        /^http:\/\/192\.168\.1\.\d+:5173$/,
+        "https://www.lowbarbrawlers.com",
+        "https://lowbarbrawlers.com",
+        "http://www.lowbarbrawlers.com",
+        "http://lowbarbrawlers.com"
+      ],
       methods: ["GET", "POST"]
     }
   });
@@ -136,8 +144,8 @@ class DrawingServer {
 
     await this.loadStrokes();
 
-    this.server.listen(PORT, () => {
-      console.log(`🎨 Drawing server running on http://localhost:${PORT}`);
+    this.server.listen(PORT as number, '0.0.0.0', () => {
+      console.log(`🎨 Drawing server running on http://0.0.0.0:${PORT}`);
       console.log(`🔄 Socket.IO server ready for connections`);
     });
   }

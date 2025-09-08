@@ -6,10 +6,14 @@ const PosterSection: React.FC = () => (
 
     <div className="z-10 w-full max-w-[75%] items-center justify-center pb-4 lg:pb-0 lg:justify-left font-mono text-sm flex max-lg:pt-4">
       <img
-      className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
-      src="/assets/dragon.svg" alt="LBB Logo" width={40} height={40}
+        className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+        src="/assets/dragon.svg" alt="LBB Logo" width={40} height={40}
       />
       <h2 className="text-2xl font-bold tracking-tight">&nbsp; Posters &nbsp;</h2>
+      <img
+        className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
+        src="/assets/dragon.svg" alt="LBB Logo" width={40} height={40}
+      />
     </div>
 
     <div className="w-full max-w-[95%] sm:max-w-[85%] lg:max-w-[75%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-4 gap-2 sm:gap-4">
