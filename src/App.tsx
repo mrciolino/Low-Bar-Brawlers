@@ -3,6 +3,7 @@ import PosterSection from './components/poster_section'
 import CharacterSection from './components/character_section'
 import SplashSection from './components/splash_section'
 import Footer from './components/footer'
+import ScrollToTop from './components/scroll-to-top'
 import { ThemeProvider } from "./components/theme-provider"
 
 function Metadata() {
@@ -20,6 +21,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Metadata />
+      <ScrollToTop />
       <div className="absolute top-0 left-0 w-full h-full snap-y snap-mandatory scroll-smooth">
         <SplashSection />
         <PosterSection />

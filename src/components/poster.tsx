@@ -25,7 +25,7 @@ export function SeasonPoster({ title, description, imageSrc }: SeasonPosterProps
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <div className="p-4 w-full aspect-[4/5] relative rounded-md">
+                <div className="p-2 sm:p-4 w-full aspect-[4/5] relative rounded-md">
                     <img
                         src={imageSrc}
                         alt={title}

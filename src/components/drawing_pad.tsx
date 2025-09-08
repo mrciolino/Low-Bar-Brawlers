@@ -1,113 +1,145 @@
 
-import React, { useRef, useState, useEffect } from "react";
-import { Undo2, Redo2, Trash2, Brush } from "lucide-react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { Undo2, Trash2, Brush } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Button } from "./ui/button";
+import { useDrawingAPI, drawingUtils, type Stroke } from "../lib/api";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../components/ui/alert-dialog"
 
+// Constants
 const COLORS = ["#b91c1c", "#2563eb", "#059669", "#f59e42", "#fbbf24", "#fff", "#222"];
 const THICKNESSES = [2, 4, 8, 12];
+const CANVAS_WIDTH = 600;
+const CANVAS_HEIGHT = 350;
 
 const DrawingPad: React.FC = () => {
+    // API hook for drawing functionality
+    const { connectionStatus, paths, sendStroke, undoLastStroke, resetDrawing, canUndo, canDraw, totalStrokes, userStrokeCount } = useDrawingAPI();
+
+    // Refs
     const canvasRef = useRef<HTMLCanvasElement>(null);
+
+    // Drawing state
     const [drawing, setDrawing] = useState(false);
-    const [paths, setPaths] = useState<any[]>([]);
-    const [redoStack, setRedoStack] = useState<any[]>([]);
+    const [currentPath, setCurrentPath] = useState<Omit<Stroke, 'id' | 'userId'> | null>(null);
+
+    // UI state
     const [color, setColor] = useState(COLORS[0]);
     const [thickness, setThickness] = useState(THICKNESSES[1]);
     const [showMenu, setShowMenu] = useState(false);
-    const [currentPath, setCurrentPath] = useState<any>(null);
 
-    useEffect(() => {
-        const saved = localStorage.getItem("lbb_drawingpad");
-        if (saved) setPaths(JSON.parse(saved));
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("lbb_drawingpad", JSON.stringify(paths));
-    }, [paths]);
-
-    useEffect(() => {
+    // Canvas rendering
+    const redrawCanvas = useCallback(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        ctx?.clearRect(0, 0, canvas.width, canvas.height);
-        for (const path of paths) {
-            ctx!.strokeStyle = path.color;
-            ctx!.lineWidth = path.thickness;
-            ctx!.lineJoin = "round";
-            ctx!.lineCap = "round";
-            ctx!.beginPath();
-            path.points.forEach((pt: any, i: number) => {
-                if (i === 0) ctx!.moveTo(pt.x, pt.y);
-                else ctx!.lineTo(pt.x, pt.y);
-            });
-            ctx!.stroke();
-        }
-    }, [paths]);
 
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        // Use the drawing utils to render all strokes
+        drawingUtils.renderStrokes(ctx, paths);
+
+        // Draw current stroke if drawing
+        if (currentPath && drawing) {
+            drawingUtils.renderStroke(ctx, currentPath);
+        }
+    }, [paths, currentPath, drawing]);
+
+    // Canvas rendering effect
+    useEffect(() => {
+        redrawCanvas();
+    }, [redrawCanvas]);
+
+    // Event handlers
     const handlePointerDown = (e: React.PointerEvent) => {
-        if (e.button !== 0) return;
-        const rect = (e.target as HTMLCanvasElement).getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        if (e.button !== 0 || !canDraw) return;
+
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const point = drawingUtils.getCanvasPoint(e, canvas);
         setDrawing(true);
-        setCurrentPath({ color, thickness, points: [{ x, y }] });
+        setCurrentPath(drawingUtils.createStroke(color, thickness, point));
     };
+
     const handlePointerMove = (e: React.PointerEvent) => {
-        if (!drawing) return;
-        const rect = (e.target as HTMLCanvasElement).getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        setCurrentPath((prev: any) => prev ? { ...prev, points: [...prev.points, { x, y }] } : prev);
+        if (!drawing || !currentPath) return;
+
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const point = drawingUtils.getCanvasPoint(e, canvas);
+        setCurrentPath(prev => prev ? drawingUtils.addPointToStroke(prev, point) : prev);
     };
+
     const handlePointerUp = () => {
         if (drawing && currentPath) {
-            setPaths((prev) => [...prev, currentPath]);
+            sendStroke(currentPath);
             setCurrentPath(null);
             setDrawing(false);
-            setRedoStack([]);
         }
     };
 
-    useEffect(() => {
-        if (!drawing || !currentPath) return;
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        ctx!.strokeStyle = currentPath.color;
-        ctx!.lineWidth = currentPath.thickness;
-        ctx!.lineJoin = "round";
-        ctx!.lineCap = "round";
-        ctx!.beginPath();
-        currentPath.points.forEach((pt: any, i: number) => {
-            if (i === 0) ctx!.moveTo(pt.x, pt.y);
-            else ctx!.lineTo(pt.x, pt.y);
-        });
-        ctx!.stroke();
-    }, [currentPath, drawing]);
+    const handleUndo = () => { undoLastStroke(); };
+    const handleReset = () => { resetDrawing(); };
+    const toggleMenu = () => setShowMenu(prev => !prev);
 
-    const handleUndo = () => {
-        if (paths.length === 0) return;
-        setRedoStack((r) => [paths[paths.length - 1], ...r]);
-        setPaths((p) => p.slice(0, -1));
-    };
-    const handleRedo = () => {
-        if (redoStack.length === 0) return;
-        setPaths((p) => [...p, redoStack[0]]);
-        setRedoStack((r) => r.slice(1));
-    };
-    const handleReset = () => {
-        setPaths([]);
-        setRedoStack([]);
-    };
 
-    const handleDrawMenu = () => setShowMenu((v) => !v);
+    // Drawing menu component
+    const DrawingMenu = () => (
+        showMenu && (
+            <div className="absolute left-25 top-4 z-20 bg-white/95 dark:bg-neutral-800/95 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-lg p-4 flex flex-col gap-2 min-w-[180px] backdrop-blur-sm">
+                <div>
+                    <div className="font-semibold text-xs mb-2">Color</div>
+                    <div className="flex gap-2 flex-wrap">
+                        {COLORS.map((c) => (
+                            <button
+                                key={c}
+                                className={`w-6 h-6 rounded-full border-2 transition-all ${color === c ? 'border-blue-500 scale-110' : 'border-neutral-300 hover:scale-105'
+                                    } focus:outline-none focus:ring-2 focus:ring-blue-300`}
+                                style={{ background: c }}
+                                onClick={() => setColor(c)}
+                                aria-label={`Select color ${c}`}
+                            />
+                        ))}
+                    </div>
+                </div>
 
-    const CANVAS_W = 600;
-    const CANVAS_H = 350;
+                <div>
+                    <div className="font-semibold text-xs mb-2">Thickness</div>
+                    <div className="flex gap-2 items-center flex-wrap">
+                        {THICKNESSES.map((t) => (
+                            <button
+                                key={t}
+                                className={`rounded-full border-2 transition-all ${thickness === t ? 'border-blue-500 scale-110' : 'border-neutral-300 hover:scale-105'
+                                    } focus:outline-none focus:ring-2 focus:ring-blue-300 flex items-center justify-center`}
+                                style={{ width: 32, height: 32 }}
+                                onClick={() => setThickness(t)}
+                                aria-label={`Select thickness ${t}px`}
+                            >
+                                <div
+                                    style={{
+                                        background: color,
+                                        width: t,
+                                        height: t,
+                                        borderRadius: '50%'
+                                    }}
+                                />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="text-xs text-gray-500 mt-2 border-t pt-2">
+                    <div>Your strokes: {userStrokeCount} | Total strokes: {totalStrokes}</div>
+                </div>
+            </div>
+        )
+    );
 
     return (
         <div className="flex flex-col items-center justify-center w-full max-w-4xl mx-auto">
+
             <div className="relative w-full flex items-center justify-center">
                 {/* Background scroll image */}
                 <img
@@ -123,11 +155,12 @@ const DrawingPad: React.FC = () => {
                     onDragStart={(e) => e.preventDefault()}
                     onContextMenu={(e) => e.preventDefault()}
                 />
+
                 {/* Canvas overlay */}
                 <canvas
                     ref={canvasRef}
-                    width={CANVAS_W}
-                    height={CANVAS_H}
+                    width={CANVAS_WIDTH}
+                    height={CANVAS_HEIGHT}
                     className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-transparent cursor-crosshair"
                     style={{ width: '75%', height: '65%', maxWidth: '600px', maxHeight: '350px' }}
                     onPointerDown={handlePointerDown}
@@ -137,7 +170,21 @@ const DrawingPad: React.FC = () => {
                 />
 
                 {/* Left column controls */}
-                <div className="absolute left-14 top-44 z-10 flex flex-col gap-3">
+                <div className="absolute left-14 top-25 z-10 flex flex-col gap-3">
+
+                    {/* Status Indicator */}
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <div className={`ml-2 w-5 h-5 rounded-full border-dashed ${connectionStatus === 'connected' ? 'bg-green-500' :
+                                connectionStatus === 'connecting' ? 'bg-yellow-500' : 'bg-red-500'}`} />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Backend {connectionStatus === 'connected' ? 'Connected' :
+                                connectionStatus === 'connecting' ? 'Connecting...' :
+                                    'Disconnected'}</p>
+                        </TooltipContent>
+                    </Tooltip>
+
                     {/* Drawing menu button */}
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -145,17 +192,17 @@ const DrawingPad: React.FC = () => {
                                 variant="outline"
                                 size="icon"
                                 className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm hover:bg-blue-100 dark:hover:bg-blue-900"
-                                onClick={handleDrawMenu}
+                                onClick={toggleMenu}
                             >
                                 <Brush className="h-5 w-5 text-blue-700 dark:text-blue-300" />
                             </Button>
                         </TooltipTrigger>
                         <TooltipContent side="right">
-                            <p>Drawing options</p>
+                            <p>Drawing Options</p>
                         </TooltipContent>
                     </Tooltip>
 
-                    {/* Control buttons */}
+                    {/* Undo button */}
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <Button
@@ -163,83 +210,51 @@ const DrawingPad: React.FC = () => {
                                 size="icon"
                                 className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm disabled:opacity-50 hover:bg-neutral-100 dark:hover:bg-neutral-900"
                                 onClick={handleUndo}
-                                disabled={paths.length === 0}
+                                disabled={!canUndo}
                             >
                                 <Undo2 className="h-5 w-5" />
                             </Button>
                         </TooltipTrigger>
                         <TooltipContent side="right">
-                            <p>Undo</p>
+                            <p>Undo your last stroke ({userStrokeCount} available)</p>
                         </TooltipContent>
                     </Tooltip>
-
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm disabled:opacity-50 hover:bg-neutral-100 dark:hover:bg-neutral-900"
-                                onClick={handleRedo}
-                                disabled={redoStack.length === 0}
-                            >
-                                <Redo2 className="h-5 w-5" />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="right">
-                            <p>Redo</p>
-                        </TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm hover:bg-red-100 dark:hover:bg-red-900"
-                                onClick={handleReset}
-                            >
-                                <Trash2 className="h-5 w-5 text-red-600" />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="right">
-                            <p>Reset</p>
-                        </TooltipContent>
-                    </Tooltip>
+                    {/* Reset button with confirmation dialog */}
+                    <AlertDialog>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <AlertDialogTrigger asChild>
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm hover:bg-red-100 dark:hover:bg-red-900"
+                                        disabled={!canDraw}
+                                    >
+                                        <Trash2 className="h-5 w-5 text-red-600" />
+                                    </Button>
+                                </AlertDialogTrigger>
+                            </TooltipTrigger>
+                            <TooltipContent side="right">
+                                <p>Reset entire drawing (affects all users)</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <AlertDialogContent>
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    This will clear the entire drawing for all connected users.
+                                    This action cannot be undone and will affect everyone currently drawing.
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction onClick={handleReset}>Reset Drawing</AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                 </div>
 
-                {/* Drawing menu */}
-                {showMenu && (
-                    <div className="absolute left-16 top-4 z-20 bg-white/95 dark:bg-neutral-800/95 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-lg p-4 flex flex-col gap-4 min-w-[180px] backdrop-blur-sm">
-                        <div>
-                            <div className="font-semibold text-xs mb-1">Color</div>
-                            <div className="flex gap-2">
-                                {COLORS.map((c) => (
-                                    <button
-                                        key={c}
-                                        className={`w-6 h-6 rounded-full border-2 ${color === c ? 'border-blue-500' : 'border-neutral-300'} focus:outline-none`}
-                                        style={{ background: c }}
-                                        onClick={() => setColor(c)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                        <div>
-                            <div className="font-semibold text-xs mb-1">Thickness</div>
-                            <div className="flex gap-2 items-center">
-                                {THICKNESSES.map((t) => (
-                                    <button
-                                        key={t}
-                                        className={`rounded-full border-2 ${thickness === t ? 'border-blue-500' : 'border-neutral-300'} focus:outline-none flex items-center justify-center`}
-                                        style={{ width: 28, height: 28 }}
-                                        onClick={() => setThickness(t)}
-                                    >
-                                        <div style={{ background: color, width: t, height: t, borderRadius: '50%' }} />
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                )}
+                <DrawingMenu />
             </div>
         </div>
     );

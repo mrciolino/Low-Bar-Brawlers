@@ -24,27 +24,27 @@ const SplashSection: React.FC = () => (
                     width={64}
                     height={64}
                 />
-                <h1 className="text-5xl font-extrabold tracking-tight text-center leading-tight mb-2">
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-center leading-tight mb-2">
                     Low Bar Brawlers
                 </h1>
                 <h2 className="text-lg font-medium text-center text-neutral-600 dark:text-neutral-300 mb-4">
                     Eleven adventurers ventured out into an unknown world on a dangerous quest.<br />This is the story of their chaotic journey.
                 </h2>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-2 px-2">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 mb-2 px-2">
                     <a
                         aria-label="Wiki Page"
                         href="https://wiki.lowbarbrawlers.com"
                         rel="noopener noreferrer"
                         target="_blank"
-                        className="flex flex-row w-[14rem] items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-sm hover:shadow-md transition p-4 group gap-3 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                        className="flex flex-row w-90 md:w-[14rem] items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-sm hover:shadow-md transition p-4 group gap-3 hover:bg-neutral-100 dark:hover:bg-neutral-700"
                     >
                         <File className="h-6 w-6 text-neutral-700 dark:text-neutral-300  transition" />
                         <span className="text-base font-medium  transition">Wiki</span>
                     </a>
                     <Popover>
                         <PopoverTrigger >
-                            <a className="flex flex-row w-[14rem] items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-sm hover:shadow-md transition p-4 group gap-3 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                            <a className="flex flex-row w-90 md:w-[14rem] items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-sm hover:shadow-md transition p-4 group gap-3 hover:bg-neutral-100 dark:hover:bg-neutral-700"
                                 style={{ cursor: "pointer" }}
                             >
                                 <GitPullRequestArrow className="h-6 w-6 text-neutral-700 dark:text-neutral-300 transition" />
@@ -77,7 +77,7 @@ const SplashSection: React.FC = () => (
                     <a
                         aria-label="Low Bar Brawler's Session Videos"
                         onClick={() => toast("Contact the Admin for access to session videos.")}
-                        className="flex flex-row w-[14rem] items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-sm hover:shadow-md transition p-4 group gap-3 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                        className="flex flex-row w-90 md:w-[14rem] items-center justify-center rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-sm hover:shadow-md transition p-4 group gap-3 hover:bg-neutral-100 dark:hover:bg-neutral-700"
                         style={{ cursor: "pointer" }}
                     >
                         <Clapperboard className="h-6 w-6 text-neutral-700 dark:text-neutral-300 transition group-hover:animate-pulse" />
@@ -88,12 +88,12 @@ const SplashSection: React.FC = () => (
             </div>
 
             {/* Parchment Drawing Pad Section */}
-            <div className="hidden lg:flex flex-col items-center justify-center w-full my-8">
+            <div className="hidden lg:flex flex-col items-center justify-center w-full">
                 <DrawingPad />
             </div>
 
             {/* Navigation Buttons */}
-            <div className="w-full flex flex-row items-center justify-center gap-6 mb-4">
+            <div className="w-full flex flex-row items-center justify-center gap-6 mb-20 md:mb-4">
                 <a
                     aria-label="Poster Section"
                     onClick={(e) => {

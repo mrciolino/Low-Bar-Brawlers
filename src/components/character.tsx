@@ -36,43 +36,43 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
                 </div>
                 <div className="grid grid-cols-3 gap-1 sm:gap-2 px-2 w-full text-xs sm:text-sm">
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-gray-100 dark:bg-neutral-700 bg-clip-border px-2 sm:px-3 py-1 sm:py-2 shadow-3xl shadow-shadow-500 dark:shadow-none">
-                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">CLASS</p>
-                        <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-100">
+                        <p className="text-[0.5rem] top-5 left-5 xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">CLASS</p>
+                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-700 dark:text-gray-100 leading-tight">
                             {class_name}
                         </p>
                     </div>
 
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-gray-100 dark:bg-neutral-700 bg-clip-border px-2 sm:px-3 py-1 sm:py-2 shadow-3xl shadow-shadow-500 dark:shadow-none">
-                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">SUBCLASS</p>
-                        <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-100">
+                        <p className="text-[0.5rem] top-5 left-5 xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">SUBCLASS</p>
+                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-700 dark:text-gray-100 leading-tight">
                             {subclass}
                         </p>
                     </div>
 
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-gray-100 dark:bg-neutral-700 bg-clip-border px-2 sm:px-3 py-1 sm:py-2 shadow-3xl shadow-shadow-500 dark:shadow-none">
                         <p className="text-[0.5rem] top-5 left-5 xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">BACKGROUND</p>
-                        <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-100">
+                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-700 dark:text-gray-100 leading-tight">
                             {background}
                         </p>
                     </div>
 
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-gray-100 dark:bg-neutral-700 bg-clip-border px-2 sm:px-3 py-1 sm:py-2 shadow-3xl shadow-shadow-500 dark:shadow-none">
-                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">RACE</p>
-                        <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-100">
+                        <p className="text-[0.5rem] top-5 left-5 xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">RACE</p>
+                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-700 dark:text-gray-100 leading-tight">
                             {race}
                         </p>
                     </div>
 
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-gray-100 dark:bg-neutral-700 bg-clip-border px-2 sm:px-3 py-1 sm:py-2 shadow-3xl shadow-shadow-500 dark:shadow-none">
-                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">ALIGNMENT</p>
-                        <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-100">
+                        <p className="text-[0.5rem] top-5 left-5 xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">ALIGNMENT</p>
+                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base font-medium text-gray-700 dark:text-gray-100 leading-tight">
                             {alignment}
                         </p>
                     </div>
 
                     <div className="flex flex-col items-start justify-center rounded-2xl bg-gray-100 dark:bg-neutral-700 bg-clip-border px-2 sm:px-3 py-1 sm:py-2 shadow-3xl shadow-shadow-500 dark:shadow-none">
-                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">LEVEL</p>
-                        <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-100">
+                        <p className="text-[0.5rem] top-5 left-5 xs:text-xs sm:text-xs md:text-sm lg:text-base text-gray-600 dark:text-gray-300 leading-tight">LEVEL</p>
+                        <p className="text-[0.5rem] xs:text-xs sm:text-xs md:text-sm lg:text-base font-medium text-gray-700 dark:text-gray-100 leading-tight">
                             {level}
                         </p>
                     </div>
@@ -140,7 +140,7 @@ function CharacterHighlights(name: any): JSX.Element {
 
             </div>
             {/* download button for charactor icon */}
-            <div className="relative bottom-0 right-0 -mt-4">
+            <div className="relative bottom-0 right-0">
                 <Button size="sm" onClick={downloadImage}>Download Character Icon</Button>
             </div>
         </>
