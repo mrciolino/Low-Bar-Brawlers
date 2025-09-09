@@ -20,14 +20,20 @@ export type ConnectionStatus = 'connecting' | 'connected' | 'disconnected';
 
 // Constants
 const getServerURL = () => {
-    if (process.env.NODE_ENV === 'production') {
-        // In production with nginx proxy, use same origin
-        return '';
+    // Check if we're running on localhost (development or preview)
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    if (isLocalhost) {
+        // In development or local preview, always use localhost:3001
+        const url = `http://localhost:3001`;
+        console.log('🌐 Socket.IO server URL (localhost):', url);
+        return url;
+    } else {
+        // In actual production with domain, use same origin
+        const url = '';
+        console.log('🌐 Socket.IO server URL (production):', 'same origin');
+        return url;
     }
-
-    // In development, use the same host as the current page
-    const currentHost = window.location.hostname;
-    return `http://${currentHost}:3001`;
 };
 
 const SERVER_URL = getServerURL();
@@ -45,18 +51,39 @@ export const useDrawingAPI = () => {
 
     // Initialize Socket.IO connection
     useEffect(() => {
-        const socket = io(SERVER_URL);
+        console.log('🚀 Attempting to connect to:', SERVER_URL);
+        const socket = io(SERVER_URL, {
+            transports: ['polling', 'websocket'],
+            timeout: 20000,
+            forceNew: true,
+            upgrade: true,
+            rememberUpgrade: false
+        });
         socketRef.current = socket;
 
         // Connection events
         socket.on('connect', () => {
-            console.log('🔌 Connected to drawing server');
+            console.log('🔌 Connected to drawing server via', socket.io.engine.transport.name);
             setConnectionStatus('connected');
         });
 
-        socket.on('disconnect', () => {
-            console.log('🔌 Disconnected from drawing server');
+        socket.on('disconnect', (reason) => {
+            console.log('🔌 Disconnected from drawing server:', reason);
             setConnectionStatus('disconnected');
+        });
+
+        socket.on('connect_error', (error) => {
+            console.error('❌ Connection error:', error);
+            setConnectionStatus('disconnected');
+        });
+
+        // Transport events for debugging
+        socket.on('upgrade', () => {
+            console.log('⬆️ Upgraded to', socket.io.engine.transport.name);
+        });
+
+        socket.on('upgradeError', (error) => {
+            console.log('❌ Upgrade error:', error);
         });
 
         // Drawing events

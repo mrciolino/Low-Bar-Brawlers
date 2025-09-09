@@ -11,12 +11,12 @@ type Character = {
     race: string;
     alignment: string;
     level: string;
-    icon_path: string;
+    // icon_path: string;
     class_name: string;
 };
 
 
-export function CharacterProfile({ name, full_title, class_name, subclass, background, description, race, alignment, level, icon_path }: Character): JSX.Element {
+export function CharacterProfile({ name, full_title, class_name, subclass, background, description, race, alignment, level }: Character): JSX.Element {
     return (
         <div className="flex flex-col justify-center items-center py-8 rounded-[20px] bg-gray-200 dark:bg-neutral-800 bg-clip-border shadow-3xl shadow-shadow-500 dark:text-white dark:shadow-none">
             <div className="relative flex lg:flex-col max-lg:flex-col items-center max-w-[95%] mx-auto pt-3">
@@ -85,11 +85,8 @@ export function CharacterProfile({ name, full_title, class_name, subclass, backg
     );
 };
 
-function CharacterHighlights(name: any): JSX.Element {
+function CharacterHighlights({ name }: { name: string }): JSX.Element {
     const [visibleImage, setVisibleImage] = useState(1);
-
-    // reach into dict
-    name = name["name"]
 
     // text box highlights
     let textHighlights = (
@@ -115,8 +112,8 @@ function CharacterHighlights(name: any): JSX.Element {
     }
 
     // download character icon
-    let imageUrl = `characters/${name}/icon.png`
-    let filename = `${name} Icon.png`;
+    const imageUrl = `characters/${name}/icon.png`
+    const filename = `${name} Icon.png`;
     function downloadImage() {
         const a = document.createElement('a');
         a.href = imageUrl;

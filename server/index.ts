@@ -25,8 +25,9 @@ class DrawingServer {
   private io = new Server(this.server, {
     cors: {
       origin: [
-        "http://localhost:5173", 
-        "http://localhost:3000", 
+        "http://localhost:5173",
+        "http://localhost:4173",
+        "http://localhost:3000",
         /^http:\/\/192\.168\.1\.\d+:5173$/,
         "https://www.lowbarbrawlers.com",
         "https://lowbarbrawlers.com",
@@ -50,7 +51,7 @@ class DrawingServer {
       const data = await fs.readFile(this.DRAWING_FILE, 'utf-8');
       this.strokes = JSON.parse(data);
       console.log(`📁 Loaded ${this.strokes.length} strokes from file`);
-    } catch (error) {
+    } catch {
       console.log('📁 No existing drawing file found, starting with empty canvas');
       this.strokes = [];
     }
