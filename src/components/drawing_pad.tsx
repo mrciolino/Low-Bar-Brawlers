@@ -7,7 +7,7 @@ import { useDrawingAPI, drawingUtils, type Stroke } from "../lib/api";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../components/ui/alert-dialog"
 
 // Constants
-const COLORS = ["#b91c1c", "#2563eb", "#059669", "#f59e42", "#fbbf24", "#fff", "#222"];
+const COLORS = ["#b91c1c", "#2563eb", "#059669", "#f59e42", "#fbbf24", "#ffffff", "#000000"];
 const THICKNESSES = [2, 4, 8, 12];
 const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 350;

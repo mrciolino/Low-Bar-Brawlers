@@ -22,17 +22,41 @@ interface Stroke {
 class DrawingServer {
   private app = express();
   private server = createServer(this.app);
+  // Allowed origins for socket connections. You can set DRAWING_SERVER_ALLOWED_ORIGINS
+  // as a comma-separated list. Prefix an item with `regex:` to treat it as a RegExp.
+  // If the env var is not set, we default to a permissive list that includes both
+  // the production domains and typical local/dev origins so URLs are accepted
+  // regardless of NODE_ENV.
+  private readonly ALLOWED_ORIGINS: (string | RegExp)[] = (() => {
+    const raw = process.env.DRAWING_SERVER_ALLOWED_ORIGINS;
+    if (raw && raw.length > 0) {
+      return raw.split(',').map(s => s.trim()).filter(Boolean).map(s => {
+        if (s.startsWith('regex:')) {
+          try {
+            return new RegExp(s.replace(/^regex:/, ''));
+          } catch (e) {
+            console.warn('Invalid regexp in DRAWING_SERVER_ALLOWED_ORIGINS:', s);
+            return s;
+          }
+        }
+        return s;
+      });
+    }
+
+    // defaults: production domains + local development origins + LAN regex
+    return [
+      'https://www.lowbarbrawlers.com',
+      'https://lowbarbrawlers.com',
+      'http://localhost:5173',
+      'http://localhost:4173',
+      'http://localhost:3000',
+    ];
+  })();
+
   private io = new Server(this.server, {
     cors: {
-      origin: process.env.NODE_ENV === 'production'
-        ? ["https://www.lowbarbrawlers.com", "https://lowbarbrawlers.com"]
-        : [
-          "http://localhost:5173",
-          "http://localhost:4173",
-          "http://localhost:3000",
-          /^http:\/\/192\.168\.1\.\d+:5173$/
-        ],
-      methods: ["GET", "POST"]
+      origin: this.ALLOWED_ORIGINS,
+      methods: ['GET', 'POST']
     }
   });
 
@@ -136,7 +160,7 @@ class DrawingServer {
   }
 
   private setupRoutes(): void {
-    // Health check endpoint
+    // Health check (always first)
     this.app.get('/health', (req, res) => {
       res.json({
         status: 'ok',
@@ -144,7 +168,6 @@ class DrawingServer {
         maxStrokes: this.MAX_STROKES,
         connections: this.io.engine.clientsCount,
         uptime: process.uptime(),
-        environment: process.env.NODE_ENV || 'development',
         rateLimit: {
           window: this.RATE_LIMIT_WINDOW,
           maxRequests: this.RATE_LIMIT_MAX_REQUESTS
@@ -152,14 +175,16 @@ class DrawingServer {
       });
     });
 
-    // Serve static files in production
-    if (process.env.NODE_ENV === 'production') {
-      this.app.use(express.static(path.join(process.cwd(), 'dist')));
-      this.app.get('*', (req, res) => {
-        res.sendFile(path.join(process.cwd(), 'dist', 'index.html'));
-      });
-    }
+    const distPath = path.join(process.cwd(), 'dist');
+    this.app.use(express.static(distPath));
+
+    // Catch-all *only* for unknown routes -> send frontend index.html
+    this.app.get(/^\/(?!api).*/, (req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
   }
+
+
 
   private setupSocketHandlers(): void {
     this.io.on('connection', (socket) => {
@@ -232,7 +257,7 @@ class DrawingServer {
   }
 
   public async start(): Promise<void> {
-    const PORT = process.env.PORT || 3001;
+    const PORT = process.env.DB_PORT || 3001;
 
     await this.loadStrokes();
 

@@ -1,22 +1,18 @@
 services:
-  low-bar-brawlers:
+  app:
     image: oven/bun:slim
     restart: unless-stopped
     ports:
-      - "3001:3001"
+      - "5173:5173" # Vite Port
+      - "3001:3001" # DB Port
     environment:
-      - NODE_ENV=production
-      - PORT=3001
+      - DB_PORT=3001
     volumes:
       - .:/app
-      - drawing_data:/app/server/drawing.json
     working_dir: /app
-    command: ["sh", "-c", "bun install && bun run build && bun run start:server"]
+    command: "sh -c 'bun install && bun run build && bun run start'"
     networks:
       - npm
-
-volumes:
-  drawing_data:
 
 networks:
   npm:
