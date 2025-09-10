@@ -1,0 +1,19 @@
+services:
+  app:
+    image: oven/bun:slim
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_PORT=3001
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: "sh -c 'bun install && bun run build && bun run start'"
+    networks:
+      - npm
+
+networks:
+  npm:
+    external: true
+    name: npm_network
