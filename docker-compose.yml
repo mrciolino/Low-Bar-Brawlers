@@ -3,8 +3,7 @@ services:
     image: oven/bun:slim
     restart: unless-stopped
     ports:
-      - "5173:5173" # Vite Port
-      - "3001:3001" # DB Port
+      - "3001:3001"
     environment:
       - DB_PORT=3001
     volumes:

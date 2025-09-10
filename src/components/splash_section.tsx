@@ -54,7 +54,7 @@ const SplashSection: React.FC = () => (
                         <PopoverContent>
                             <div className="flex flex-col gap-2">
                                 <a
-                                    href="https://github.com/LowBarBrawlers/wiki-backup"
+                                    href="https://github.com/mrciolino/wiki-backup"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex flex-row items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition font-medium"
@@ -63,7 +63,7 @@ const SplashSection: React.FC = () => (
                                     Wiki Backup
                                 </a>
                                 <a
-                                    href="https://github.com/LowBarBrawlers/lowbarbrawlers.com"
+                                    href="https://github.com/mrciolino/Low-Bar-Brawlers"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex flex-row items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition font-medium"
