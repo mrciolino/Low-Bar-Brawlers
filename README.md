@@ -1,6 +1,6 @@
 <h1><img align="center" height="50" src="./public/assets/dragon.svg"> Low Bar Brawlers </h1>
 
-[![Website](https://img.shields.io/badge/website-live-%23af4543.svg?style=for-the-badge&logo=dungeonsanddragons&logoColor=white)](https://low-bar-brawlers.onrender.com/)
+[![Website](https://img.shields.io/badge/website-live-%23af4543.svg?style=for-the-badge&logo=dungeonsanddragons&logoColor=white)](https://www.lowbarbrawlers.com/)
 
 Welcome to the Low Bar Brawlers project — an online companion and archive for a Dungeons & Dragons 5e campaign that is actively running. This repository contains the site source, artwork, character profiles, posters, and a small collaborative drawing pad.
 
