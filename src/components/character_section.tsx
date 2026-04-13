@@ -7,8 +7,8 @@ import playerData from '../data/players.json';
 
 
 const CharacterSection: React.FC = () => (
-    <main id="character" className="flex min-h-screen flex-col items-center justify-between lg:p-24 max-lg:p-8 bg-neutral-300 dark:bg-neutral-700">
-        <div className="z-10 w-full max-w-[75%] items-center justify-center pb-4 lg:pb-0 lg:justify-left font-mono text-sm flex max-lg:pt-4">
+    <main id="character" className="flex min-h-screen flex-col items-center justify-between lg:p-24 max-lg:p-8 bg-neutral-300 dark:bg-neutral-700 overflow-x-hidden">
+        <div className="z-10 w-full max-w-[95%] sm:max-w-[85%] lg:max-w-[75%] items-center justify-center pb-4 lg:pb-6 lg:justify-left font-mono text-sm flex max-lg:pt-4">
             <img
                 className="relative drop-shadow-[0_0_0.3rem_#111111] dark:drop-shadow-[0_0_0.3rem_#ffffff70]"
                 src="/assets/dragon.svg" alt="LBB Logo" width={40} height={40}
@@ -20,7 +20,7 @@ const CharacterSection: React.FC = () => (
             />
         </div>
 
-        <div className="w-full max-w-[90%] mx-auto">
+        <div className="w-full max-w-full sm:max-w-[95%] mx-auto">
             <Carousel opts={{ align: "start", loop: true }}>
                 <CarouselContent className="-ml-4">
                     {playerData.map((player, index) => (
@@ -29,12 +29,12 @@ const CharacterSection: React.FC = () => (
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="max-lg:left-2" />
+                <CarouselNext className="max-lg:right-2" />
             </Carousel>
         </div>
 
-        <div className="text-left w-full max-w-[75%] mt-2 text-xs sm:text-sm">
+        <div className="text-left w-full max-w-[95%] sm:max-w-[85%] lg:max-w-[75%] mt-2 text-xs sm:text-sm">
             Scroll through the characters to learn more about the cast of the Low Bar Brawlers.
         </div>
     </main>

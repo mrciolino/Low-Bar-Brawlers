@@ -22,7 +22,7 @@ export type ConnectionStatus = 'connecting' | 'connected' | 'disconnected';
 const getServerURL = () => {
     // Check if we're running on localhost (development or preview)
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    
+
     if (isLocalhost) {
         // In development or local preview, always use localhost:3001
         const url = `http://localhost:3001`;
@@ -189,24 +189,36 @@ export const useDrawingAPI = () => {
     };
 };
 
+// Fixed logical coordinate space used to store and render strokes so their
+// position and thickness remain consistent across different canvas sizes.
+export const LOGICAL_WIDTH = 600;
+export const LOGICAL_HEIGHT = 350;
+
 // Utility functions for drawing operations
 export const drawingUtils = {
     /**
-     * Render strokes on a canvas context
+     * Render strokes on a canvas context.
+     * Scales from logical coordinates (600x350) to actual canvas pixel size.
      */
     renderStrokes: (ctx: CanvasRenderingContext2D, strokes: Stroke[]) => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
+        const scaleX = ctx.canvas.width / LOGICAL_WIDTH;
+        const scaleY = ctx.canvas.height / LOGICAL_HEIGHT;
+        const scaleAvg = (scaleX + scaleY) / 2;
+
         strokes.forEach(stroke => {
             ctx.strokeStyle = stroke.color;
-            ctx.lineWidth = stroke.thickness;
+            ctx.lineWidth = stroke.thickness * scaleAvg;
             ctx.lineJoin = "round";
             ctx.lineCap = "round";
             ctx.beginPath();
 
             stroke.points.forEach((point, i) => {
-                if (i === 0) ctx.moveTo(point.x, point.y);
-                else ctx.lineTo(point.x, point.y);
+                const px = point.x * scaleX;
+                const py = point.y * scaleY;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
             });
 
             ctx.stroke();
@@ -214,31 +226,39 @@ export const drawingUtils = {
     },
 
     /**
-     * Render a single stroke on canvas context
+     * Render a single stroke on canvas context (for in-progress drawing).
+     * Scales from logical coordinates to actual canvas pixel size.
      */
     renderStroke: (ctx: CanvasRenderingContext2D, stroke: Omit<Stroke, 'id' | 'userId'>) => {
+        const scaleX = ctx.canvas.width / LOGICAL_WIDTH;
+        const scaleY = ctx.canvas.height / LOGICAL_HEIGHT;
+        const scaleAvg = (scaleX + scaleY) / 2;
+
         ctx.strokeStyle = stroke.color;
-        ctx.lineWidth = stroke.thickness;
+        ctx.lineWidth = stroke.thickness * scaleAvg;
         ctx.lineJoin = "round";
         ctx.lineCap = "round";
         ctx.beginPath();
 
         stroke.points.forEach((point, i) => {
-            if (i === 0) ctx.moveTo(point.x, point.y);
-            else ctx.lineTo(point.x, point.y);
+            const px = point.x * scaleX;
+            const py = point.y * scaleY;
+            if (i === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
         });
 
         ctx.stroke();
     },
 
     /**
-     * Get canvas coordinates from pointer event
+     * Get logical coordinates (600x350 space) from a pointer event.
+     * Scales from display CSS size to the logical coordinate system.
      */
     getCanvasPoint: (e: React.PointerEvent, canvas: HTMLCanvasElement): Point => {
         const rect = canvas.getBoundingClientRect();
         return {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
+            x: (e.clientX - rect.left) * (LOGICAL_WIDTH / rect.width),
+            y: (e.clientY - rect.top) * (LOGICAL_HEIGHT / rect.height)
         };
     },
 
