@@ -6,10 +6,19 @@ services:
       - "3001:3001"
     environment:
       - DB_PORT=3001
+      - NODE_ENV=production
     volumes:
-      - .:/app
+      - ./dist:/app/dist:ro
+      - ./dist-server:/app/dist-server:ro
+      - ./server/drawing.json:/app/server/drawing.json
+      - ./package.json:/app/package.json:ro
+      - ./node_modules:/app/node_modules:ro
     working_dir: /app
-    command: "sh -c 'bun install && bun run build && bun run start'"
+    user: "1000:1000"
+    read_only: true
+    tmpfs:
+      - /tmp
+    command: "bun /app/dist-server/index.js"
     networks:
       - npm
 
